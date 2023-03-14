@@ -1,1 +1,2 @@
-hello world
+
+console.log("Prvi console log");
