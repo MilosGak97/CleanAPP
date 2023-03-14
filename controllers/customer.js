@@ -1,14 +1,16 @@
 const Move = require('../models/move');
 const fs = require('fs');
-const multer = require('multer'); // a
-const upload = multer(); // a
+const multer = require('multer'); 
+const upload = multer(); 
+const path = require('path');
+
 
 exports.anyPage = (req,res,next) => {
     res.send('404 Page not found');
 }
 
 exports.getLOGIN = (req,res,next) => {
-    if(req.session.moveid == true){
+    if(req.session.moveid){
         res.redirect('/mybol');
     }else{
         res.render('login');
@@ -142,6 +144,7 @@ exports.POSTsignature1 = (req,res,next) => {
     //aaa
     const today = new Date();
     const todayDate = today.toLocaleDateString("en-US", {timeZone: "America/Chicago"});
+    console.log("LoadTracker 100")
 
     Move.findByPk(req.session.moveid).then(result => {
         result.signature1_url = filename;
@@ -149,17 +152,18 @@ exports.POSTsignature1 = (req,res,next) => {
         result.signature1_datetime = cstDate;
         result.start_time = start_time;
         result.start_date = todayDate;
+        console.log("LoadTracker 101")
         return result.save();
         }).then(() => {
+            console.log("LoadTracker 102")
             res.redirect('/signedbol');
       })
       .catch(err =>{
         console.log(err);
-    }); 
-
-} 
+    });
+}
 
 
 exports.GETsignedBol = (req,res,next) => {
-    res.render('customer/signedbol');
+    res.render('signedbol');
 }
