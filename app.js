@@ -4,6 +4,8 @@ const sequelize = require('./util/database');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const customerRoutes = require('./routes/customer');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'ejs');
@@ -13,22 +15,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
+app.use(customerRoutes);
 
-
-
-app.get('/login', (req,res,next) => {
-    res.render('index');
-});
-
-app.post('/login', (req,res,next) => {
-    console.log(req.body.email);
-    return res.send(req.body.email);
-})
-
-app.use('/', (req, res, next) => {
-    res.send('Hello World');
-  });
-  
 
 sequelize
   //.sync({ force: true })
