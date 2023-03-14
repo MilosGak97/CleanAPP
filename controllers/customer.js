@@ -1,4 +1,7 @@
 const Move = require('../models/move');
+const fs = require('fs');
+const multer = require('multer'); // a
+const upload = multer(); // a
 
 exports.anyPage = (req,res,next) => {
     res.send('404 Page not found');
@@ -22,12 +25,15 @@ exports.postLOGIN = (req,res,next) => {
             passcode: passcode
         }
     }).then(results => {
+        console.log("RESULT LENGTH:");
+        console.log(results.length);
         if(results.length > 0){
+
         const result = results[0];
         req.session.moveid = result.id;
         res.redirect(`/mybol`);
         }else{
-            res.redirect("/login");
+            res.redirect("/login2552");
         }
     }).catch( err =>    {
         console.log(err);
@@ -36,10 +42,17 @@ exports.postLOGIN = (req,res,next) => {
 
 
 exports.viewBOL = (req,res,next) => {
-    if(req.session.moveid == true){
+    console.log("VIEW BOL REQ SESSION MOVE ID:");
+    console.log(req.session.moveid);
+    if(req.session.moveid){
 
         Move.findByPk(req.session.moveid).then(result => {
+            console.log("VIEW BOL result.signature1_datetime:");
+            console.log(result.signature1_datetime);
             if(result.signature1_datetime){
+                
+            console.log("VIEW BOL result.signature2_datetime");
+            console.log(result.signature2_datetime);
                 if(result.signature2_datetime){
                                 
                     const travel_total = result.travel_time * result.rate;
@@ -66,25 +79,87 @@ exports.viewBOL = (req,res,next) => {
                         signature_delivery: false
                     });
                 }else{
+                    console.log("FIRST ELSE IN VIEW BOL");
                     return res.redirect('/signedBol');
                 }
             }else{
+                console.log("SECOND ELSE IN VIEW BOL");
                 const now = new Date();
                 const formattedDate = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
-                console.log(formattedDate);
-                /*
-                res.render('customer/bol.ejs', {
+                
+                res.render('bol.ejs', {
                     result: result,
                     formattedDate:formattedDate,
                     moveid:req.session.moveid
                 });
-                */
-               res.send("ELSE IN FIND BY PK");
-                console.log(result);
+                /*
+               res.send("ELSE IN FIND BY PK");*/
 
             }
-        }).catch();
+        }).catch(err => {
+            console.log(err);
+        });
     }else{
+        console.log("THIRD ELSE IN VIEW BOL");
         res.redirect('/login');
     }
+}
+
+
+exports.POSTsignature1 = (req,res,next) => {
+    upload.none();
+
+    const signature_hash = req.body.random_string;
+    const signature = req.body.signature_input;
+    const moveid = req.session.moveid;
+    /*
+    function generateRandomString(length) {
+        const bytes = crypto.randomBytes(Math.ceil(length / 2));
+        const hexString = bytes.toString('hex');
+        return hexString.slice(0, length);
+    }
+    */
+
+
+    // process the name and signature data here
+    // ...
+    // decode the signature data and save to file
+    const data = signature.replace(/^data:image\/\w+;base64,/, '');
+    const buffer = Buffer.from(data, 'base64');
+    const filename = `${signature_hash}_signature.png`;
+    const filepath = path.join(__dirname, '../signatures', filename);
+    fs.writeFileSync(filepath, buffer);
+
+    // send response to client
+    const start_time = req.body.start_time;
+    console.log(start_time);
+
+    const now = new Date();
+    const options = { timeZone: 'America/Chicago' };
+    const cstDate = new Date(now.toLocaleString('en-US', options));
+
+
+    //aaa
+    const today = new Date();
+    const todayDate = today.toLocaleDateString("en-US", {timeZone: "America/Chicago"});
+
+    Move.findByPk(req.session.moveid).then(result => {
+        result.signature1_url = filename;
+        result.signature1_hash = signature_hash;
+        result.signature1_datetime = cstDate;
+        result.start_time = start_time;
+        result.start_date = todayDate;
+        return result.save();
+        }).then(() => {
+            res.redirect('/signedbol');
+      })
+      .catch(err =>{
+        console.log(err);
+    }); 
+
+} 
+
+
+exports.GETsignedBol = (req,res,next) => {
+    res.render('customer/signedbol');
 }
