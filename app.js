@@ -1,5 +1,14 @@
 const express = require('express');
 const app = express();
+const sequelize = require('./util/database');
+
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch((error) => {
+    console.error('Unable to connect to the database:', error);
+  });
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
