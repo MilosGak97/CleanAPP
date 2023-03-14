@@ -1,0 +1,50 @@
+
+<form action="/bolendtime" method="post">
+    <center><h3 style="margin-top:-10px;"><u> Details of labor and extra charges </u> </h3></center>
+    <label for="start-time" style="font-size:24px;font-weight:bold">Start Time:</label>
+    <input type="time" id="start_time" name="start_time" value="<%= result.start_time %>" readonly style="font-size:24px;font-weight:bold;<% if(final_version == true){ %>border:none<% } %>">
+    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+    <label for="end-time" style="font-size:24px;font-weight:bold">End Time:</label>
+    <input type="time" id="end_time" name="end_time" style="font-size:24px;font-weight:bold;<% if(final_version == true){ %>border:none<% } %>" <% if(final_version == true){ %> readonly <% } if(result.end_time) { %> value="<%=result.end_time%>" <% } %> >
+    <br>
+    <br>
+    <table>
+      <tr>
+        <th><center>Description of service</center></th>
+        <th><center>Quantity</center></th>
+        <th><center>Rate</center></th>
+      </tr>
+      <tr>
+        <td><center><input type="text" name="add_service_1" style="margin:0;padding:0;text-align:center;font-size:16px;width:220px;height:22px;<% if(final_version == true){ %>border:none<% } %>" placeholder="Service name"<% if(final_version == true){ %>readonly<% } %> <% if(result.add_service_1){ %> value="<%=result.add_service_1%>" <% } %> > </center></td>
+        <td><center><input type="text" name="add_service_11" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.add_service_11){%> value="<%=result.add_service_11%>" <%}%> <% if(final_version == true){ %>readonly<% } %> ></center></td>
+        <td><center><input type="text" name="add_service_111" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.add_service_111){ %> value="<%=result.add_service_111%>" <% } %> <% if(final_version == true){ %>readonly<% } %> ></center></td>
+       
+      </tr>
+      <tr>
+        <td><center><input type="text" name="add_service_2" style="margin:0;padding:0;text-align:center;font-size:16px;width:220px;height:22px;<% if(final_version == true){ %>border:none<% } %>" placeholder="Service name" <% if(result.add_service_2){%> value="<%=result.add_service_2%>" <%}%> <% if(final_version == true){ %>readonly<% } %> ></center></td>
+        <td><center><input type="text" name="add_service_22" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.add_service_22){%> value="<%=result.add_service_22%>" <%}%> <% if(final_version == true){ %>readonly<% } %> ></center></td>
+        <td><center><input type="text" name="add_service_222" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.add_service_222){%> value="<%=result.add_service_222%>" <%}%> <% if(final_version == true){ %>readonly<% } %> ></center></td>
+        
+      </tr>
+      <tr>
+        <td><center><input type="text" name="add_service_3" style="margin:0;padding:0;text-align:center;font-size:16px;width:220px;height:22px;<% if(final_version == true){ %>border:none<% } %>" placeholder="Service name" <% if(result.add_service_3){%> value="<%=result.add_service_3%>" <%}%> <% if(final_version == true){ %>readonly<% } %> ></center></td>
+        <td><center><input type="text" name="add_service_33" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.add_service_33){%> value="<%=result.add_service_33%>" <%}%> <% if(final_version == true){ %>readonly<% } %> ></center></td>
+        <td><center><input type="text" name="add_service_333" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.add_service_333){%> value="<%=result.add_service_333%>" <%}%> <% if(final_version == true){ %>readonly<% } %> ></center></td>
+      </tr>
+    </table>     
+    <br>
+    <% if(final_version == false) { %>
+    <label>
+      <input type="checkbox" name="processingfee" value="true"  readonly >
+      Credit/Debit card payment, 3% processing fee.
+    </label>
+    <% } %>
+    
+    <% if(final_version == false) { %>
+      <center><button type="submit" name="update" value="update_clicked" style="padding:10px;width:120px;margin-top:15px"> UPDATE / KEEP EDITING </button></center>
+    <% } %>
+    
+    <% if(final_version == false) { %>
+      <center><button type="submit" name="update_sign" value="update_sign_clicked" style="padding:10px;width:120px;margin-top:15px"> UPDATE / <br> GO TO SIGNATURE </button></center>
+    <% } %>
+   </form>

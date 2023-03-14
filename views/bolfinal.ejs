@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill of Ladding</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+
+    <div class="grid-container">
+        <%- include('include_bol_header.ejs') %>
+        
+        <!-- Third Row -->
+        <div class="column full-width">
+          <%- include('include_pickup_delivery.ejs') %>
+        </div>
+        
+        <!-- Fourth Row -->
+        <div class="column span-3"> 
+            <%- include('include_bol_intr_est_val.ejs') %>  
+        </div>
+        
+        
+        <!-- Eighth Row -->
+        <div class="column full-width">
+             <%- include('include_signature1.ejs'); %>
+      </div>
+
+        <div class="column full-width">
+          <%- include('include_packing.ejs') %>
+        </div>
+    
+        <div class="column full-width">
+          <%- include('include_bol_end.ejs') %>
+        </div>
+        
+        <% if(total_boolean == true) { %>
+          <%- include('include_total.ejs') %>
+          <%
+        } %>
+        
+
+        <div class="column full-width">
+          <%- include('include_signature2.ejs'); %>
+   </div>
+
+      </div>
+        
+ <!-- JAVASCRIPT FOR DRAWING PAD FUNCTIONS -->
+     
+</body>
+</html>

@@ -1,0 +1,101 @@
+
+<center><h3 style="margin-top:-10px;"><u> Details of packing materials </u> </h3></center>
+<table>            
+<form action="/bolmaterials" method="post">
+  <tr>
+    <th>Description - Carrier pack</th>
+    <th><center>Quantity</center></th>
+    <th>Rate</th>
+  </tr>
+  <tr>
+    <td>Boxes - 1.5 cuft.</td>
+    <td><center><input type="text" name="cpb15" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.cpb15 > 0){ %> value="<%=result.cpb15 %>"  <% } %> ></center></td>
+    <td>$4.65</td>
+  </tr>
+  <tr>
+    <td>Boxes - 3.0 cuft.</td>
+    <td><center><input type="text" name="cpb30" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.cpb30 > 0){ %> value="<%=result.cpb30 %>"  <% } %> ></center></td>
+    <td>$6.25</td>
+  </tr>
+  <tr>
+    <td>Boxes - 4.5 cuft.</td>
+    <td><center><input type="text" name="cpb45" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.cpb45 > 0){ %> value="<%=result.cpb45 %>"  <% } %> ></center></td>
+    <td>$7.65</td>
+  </tr>
+  <tr>
+    <td>Boxes - 6.0 cuft.</td>
+    <td><center><input type="text" name="cpb60" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.cpb60 > 0){ %> value="<%=result.cpb60 %>"  <% } %> ></center></td>
+    <td>$8.45</td>
+  </tr>
+  <tr>
+    <td>Mirror Carton</td>
+    <td><center><input type="text" name="cpmirror" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.cpmirror > 0){ %> value="<%=result.cpmirror %>"  <% } %> ></center></td>
+    <td>$18.55</td>
+  </tr>
+  <tr>
+    <td>DishPack box</td>
+    <td><center><input type="text" name="cpdishpack" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.cpdishpack > 0){ %> value="<%=result.cpdishpack %>"  <% } %> ></center></td>
+    <td>$21.55</td>
+  </tr>
+  <tr>
+    <td>Mattress Bag, King/Queen</td>
+    <td><center><input type="text" name="cpmattress" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.cpmattress > 0){ %> value="<%=result.cpmattress %>"  <% } %> ></center></td>
+    <td>$24.00</td>
+  </tr>
+  <tr>
+    <th>Description - Materials only (owner pack)</th>
+    <th><center>Quantity</center></th>
+    <th>Rate</th>
+  </tr>
+  <tr>
+    <td>Boxes - 1.5 cuft.</td>
+    <td><center><input type="text" name="opb15" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.opb15 > 0){ %> value="<%=result.opb15 %>"  <% } if(final_version == true){ %> readonly <% }  %> ></center></td>
+    <td>$1.65</td>
+  </tr>
+  <tr>
+    <td>Boxes - 3.0 cuft.</td>
+    <td><center><input type="text" name="opb30" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.opb30 > 0){ %> value="<%=result.opb30 %>"  <% } if(final_version == true){ %> readonly <% }  %> ></center></td>
+    <td>$3.00</td>
+  </tr>
+  <tr>
+    <td>Boxes - 4.5 cuft.</td>
+    <td><center><input type="text" name="opb45" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.opb45 > 0){ %> value="<%=result.opb45 %>"  <% } if(final_version == true){ %> readonly  <% }  %> ></center></td>
+    <td>$4.65</td>
+  </tr>
+  <tr>
+    <td>Boxes - 6.0 cuft.</td>
+    <td><center><input type="text" name="opb60" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.opb60 > 0){ %> value="<%=result.opb60 %>"  <% } if(final_version == true){ %> readonly <% }  %> ></center></td>
+    <td>$6.25</td>
+  </tr>
+  <tr>
+    <td>Mirror Carton</td>
+    <td><center><input type="text" name="opmirror" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.opmirror > 0){ %> value="<%=result.opmirror %>"  <% } if(final_version == true){ %> readonly  <% }  %> ></center></td>
+    <td>$10.65</td>
+  </tr>
+  <tr>
+    <td>DishPack box</td>
+    <td><center><input type="text" name="opdishpack" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.opdishpack > 0){ %> value="<%=result.opdishpack %>"  <% } if(final_version == true){ %> readonly  <% }  %> ></center></td>
+    <td>$7.65</td>
+  </tr>
+  <tr>
+    <td>Mattress Bag, King/Queen</td>
+    <td><center><input type="text" name="opmattress" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.opmattress > 0){ %> value="<%=result.opmattress %>"  <% } if(final_version == true){ %> readonly  <% }  %> ></center></td>
+    <td>$21.55</td>
+  </tr>
+  <tr>
+    <td>Tape (per 55 Yd Roll) </td>
+    <td><center><input type="text" name="optape" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.optape > 0){ %> value="<%=result.optape %>"  <% } if(final_version == true){ %> readonly  <% }  %> ></center></td>
+    <td>$3.00</td>
+  </tr>
+  <tr>
+    <td>Bubble Wrap (per Sq Ft)</td>
+    <td><center><input type="text" name="opbubble" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;<% if(final_version == true){ %>border:none<% } %>" <% if(result.opbubble > 0){ %> value="<%=result.opbubble %>"  <% } if(final_version == true){ %> readonly  <% } %> ></center></td>
+    <td>$1.05</td>
+  </tr>
+  <% if(final_version == false) { %>
+  <tr> 
+      <center><button type="submit" style="padding:10px;width:120px;margin-top:0px"> UPDATE CHANGES</button></center>
+  </tr>
+  <% } %>
+  </form>
+</table>

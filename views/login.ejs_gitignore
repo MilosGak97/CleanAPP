@@ -60,12 +60,12 @@
   <div class="container">
     <h1>View Bill of Ladding</h1>
     
-    <form action="/login235">
+    <form action="/login2" method="POST">
       <label for="email">Email</label>
       <input type="text" id="email" name="email" placeholder="Your email..">
 
-      <label for="password">Passcode</label>
-      <input type="text" id="password" name="password" placeholder="Your passcode..">
+      <label for="passcode">Passcode</label>
+      <input type="passcode" id="passcode" name="passcode" placeholder="Your passcode..">
 
       <button type="submit">Login</button>
     </form>

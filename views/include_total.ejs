@@ -1,0 +1,94 @@
+
+        <div class="column full-width">
+        <table>
+          <tr>
+            <th><center>Description</center></th>
+            <th><center>Quantity</center></th>
+            <th><center>Rate</center></th>
+            <th><center>Total</center></th>
+          </tr>
+          <tr>
+            <td><center><input type="text" name="labor_charge" style="margin:0;padding:0;text-align:center;font-size:16px;width:220px;height:22px;border:none;" value="Labor charge" readonly> </center></td>
+            <td><center><input type="text" name="labor_charge_quantity" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly <% if(labor_time){ %> value="<%=labor_time%>" <% } %> ></center></td>
+            <td><center><input type="text" name="labor_charge_rate" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none;" readonly <% if(result.rate){ %> value="<%=result.rate%>" <% } %></center></td>
+            <td><center><input type="text" name="labor_charge_total" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly <% if(labor_total){ %> value="$<%=labor_total%>" <% } %></center></td>
+           
+          </tr>
+          <tr> 
+            <td><center><input type="text" name="travel" style="margin:0;padding:0;text-align:center;font-size:16px;width:220px;height:22px;border:none;" value="Travel time" readonly> </center></td>
+            <td><center><input type="text" name="labor_charge_quantity" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly <% if(result.travel_time){ %> value="<%=result.travel_time%>" <% } %> ></center></td>
+            <td><center><input type="text" name="labor_charge_rate" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none;" readonly <% if(result.rate){ %> value="<%=result.rate%>" <% } %></center></td>
+            <td><center><input type="text" name="labor_charge_total" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly <% if(travel_total){ %> value="$<%=travel_total%>" <% } %></center></td>
+           
+          </tr>
+          <tr>
+            <td><center><input type="text" name="labor_charge" style="margin:0;padding:0;text-align:center;font-size:16px;width:220px;height:22px;border:none;" value="Packing Materials" readonly> </center></td>
+            <td><center><input type="text" name="labor_charge_quantity" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly  value="-" ></center></td>
+            <td><center><input type="text" name="labor_charge_rate" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none;" readonly value="-"> </center></td>
+            <td><center><input type="text" name="labor_charge_total" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly <% if(packingmaterials){ %> value="$<%=packingmaterials %>" <% } %></center></td>
+           </tr>
+
+           <% if(result.add_service_1){ %>
+            
+           <tr>
+            <td><center><input type="text" name="labor_charge" style="margin:0;padding:0;text-align:center;font-size:16px;width:220px;height:22px;border:none;" value="<%=result.add_service_1 %>" readonly> </center></td>
+            <td><center><input type="text" name="labor_charge_quantity" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly  value="<%= result.add_service_11 %>" ></center></td>
+            <td><center><input type="text" name="labor_charge_rate" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none;" readonly value="<%= result.add_service_111 %>"> </center></td>
+            <td><center><input type="text" name="labor_charge_total" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly  value="$<%=add_service_1_total %>"</center></td>
+          </tr>      
+
+            <%
+           } %>
+           
+           <% if(result.add_service_2){ %>
+            <tr>
+              <td><center><input type="text" name="labor_charge" style="margin:0;padding:0;text-align:center;font-size:16px;width:220px;height:22px;border:none;" value="<%=result.add_service_2 %>" readonly> </center></td>
+              <td><center><input type="text" name="labor_charge_quantity" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly  value="<%= result.add_service_22 %>" ></center></td>
+              <td><center><input type="text" name="labor_charge_rate" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none;" readonly value="<%= result.add_service_222 %>"> </center></td>
+              <td><center><input type="text" name="labor_charge_total" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly  value="$<%=add_service_2_total %>"</center></td>
+            </tr>
+            <%
+           } %>
+
+           
+           <% if(result.add_service_3){ %>
+            <tr>
+              <td><center><input type="text" name="labor_charge" style="margin:0;padding:0;text-align:center;font-size:16px;width:220px;height:22px;border:none;" value="<%=result.add_service_3 %>" readonly> </center></td>
+              <td><center><input type="text" name="labor_charge_quantity" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly  value="<%= result.add_service_33 %>" ></center></td>
+              <td><center><input type="text" name="labor_charge_rate" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none;" readonly value="<%= result.add_service_333 %>"> </center></td>
+              <td><center><input type="text" name="labor_charge_total" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly  value="$<%=add_service_3_total %>"</center></td>
+            </tr>
+            <%
+           } %>
+           <tr>
+            <td><center><input type="text" name="labor_charge" style="margin:0;padding:0;text-align:center;font-size:16px;width:220px;height:22px;border:none;" value="Deposit (paid)" readonly> </center></td>
+            <td><center><input type="text" name="labor_charge_quantity" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly  value="1" ></center></td>
+            <td><center><input type="text" name="labor_charge_rate" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none;" readonly value="<%= result.deposit %>"> </center></td>
+            <td><center><input type="text" name="labor_charge_total" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly  value="-$<%=result.deposit %>"</center></td>
+          </tr>
+      
+          <tr>
+            <th><center> <b> SUBTOTAL </b></center></th>
+            <th><center></center></th>
+            <th><center></center></th>
+            <th><center><b>$<%=subtotal %></b></center></th>
+          </tr>
+
+          
+          <tr>
+            <td><center><input type="text" name="labor_charge" style="margin:0;padding:0;text-align:center;font-size:16px;width:220px;height:22px;border:none;" value="Merchant fee" readonly> </center></td>
+            <td><center><input type="text" name="labor_charge_quantity" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly  value="-" ></center></td>
+            <td><center><input type="text" name="labor_charge_rate" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none;" readonly value="3%"> </center></td>
+            <td><center><input type="text" name="labor_charge_total" style="margin:0;padding:0;text-align:center;font-size:20px;width:120px;border:none" readonly  value="$<%=merchantfee %>"</center></td>
+          </tr>
+
+          <tr>
+            <th><center> <b> TOTAL </b></center></th>
+            <th><center></center></th>
+            <th><center></center></th>
+            <th><center><b>$<%=subtotalcc %></b></center></th>
+          </tr>
+
+          </table>
+
+      </div>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill of Ladding</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+
+    <div class="grid-container">
+        <!-- First Row -->
+        <div class="column">   
+            <center><h2>Contacts</h2></center>
+            <p>email@serbianmovers.com</p>
+            <p>www.serbianmvoers.com</p>
+            <p>708 292 4802</p>
+        </div>
+        <div class="column">
+            <center><h2><u>Household Good Bill of Ladding</u></h2></center>
+            <p>Serbian Movers LLC<br>
+            2720 South River Road #100, <br>
+            Des Plaines, IL 60018
+            </p>
+            <p>US DOT: 236436 / ILCC: 234623</p>
+            <p></p>
+        </div>
+        <div class="column">
+            <h2>_</h2>
+            <p>Bill of Ladding number: <u>IL10<%= moveid %></u></p>
+            <p>Date order taken: <u><%= formattedDate %> </u></p>
+            <p>Equipment Number:<u>22</u></p>
+        </div>
+        
+        <!-- Second Row -->
+        <div class="column span-3"><b>Customer: </b>This Bill of Lading establishes a contract between you and the household goods carrier. It confirms instructions and authorizes the carrier to move, ship , pack and/or perform the services shown. Before you sign this document it is important that you first read entire document, including the back, and that you ask for an explanation of anything that is not clear or that is different from any previous information received from the carrier or the carrier's representatives.
+        </div>
+        
+        <!-- Third Row -->
+        <div class="column full-width">
+            <div class="pu">
+                <u><center><h3>Origin</h3></center></u>
+                <u>Customer:</u> <b>
+                  <%= result.first_name %> 
+                  <%= result.last_name %></b> <br>
+                <u>Phone number:</u> <b><%= result.phone %> </b><br>
+                <u>Address:</u> <b><%= result.origin_address %></b> , <u>Unit:</u> <b><%= result.origin_address2 %></b><br>
+                <u>City:</u> <b><%= result.origin_city %></b> , <u>State:</u> <b><%= result.origin_state %></b> , <u>ZIP:</u> <b><%= result.origin_zipcode %></b> <br>
+                <u>Additional pickup:</u> - <br>
+            </div>
+            <div class="del">
+                <u><center><h3>Destination</h3></center></u>
+                <u>Customer:</u> <b>
+                  <%= result.first_name %> 
+                  <%= result.last_name %></b> <br>
+                <u>Phone number:</u> <b><%= result.phone %></b><br>
+                <u>Address:</u> <b><%= result.destination_address %></b> , <u>Unit:</u> <b><%= result.destination_address2 %></b><br>
+                <u>City:</u> <b><%= result.destination_city %></b> , <u>State:</u> <b><%= result.destination_state %></b> , <u>ZIP:</u> <b><%= result.destination_zipcode %></b> <br>
+                <u>Additional pickup:</u> - <br>
+            </div>
+            
+        </div>
+        
+        <!-- Fourth Row -->
+        <div class="column span-3"> 
+            <center><h3 style="margin-top:-10px;"><u> Intrastate only </u> </h3></center>
+            Confirm rate of $<%=result.rate%>/hour for <%= result.crew_size %> movers and <%= result.truck_number %> truck. (2 hour minimum). Customer agrees and understands that Serbian Movers LLC is on the clock upon arrival at origin, through the load, through the drive to destination, and through the unload, until our truck and/or trailer has been fully reassembled. Billed in 15 minutes increments. $149 trip charge + all materials - $100 deposit. If customer agrees please sign bellow.
+        
+            <center><h3> <u> Estimate </u></h3></center>
+            I understand this shipment is moving under a non-binding estimate. NOTE: if the charges shown on this bill exceed the charges on the non-binding estimate given me by the carrier, the carrier must release the shipment upon the payment of 110% of total payment.
+                
+            <center><h3> <u> Valuation </u> </h3></center>
+            <h4>Declared value of $0.30 per pound per article     - There is no charge for this option</h4>
+            <b>Exclusions:</b> Furniture composed of particle board or pressboard;Lamps, mapshades, pictures, mirror,artwork,glass, marble, vases or statues not packed by company. Items found broken in boxes not packed by company; Electronic, audio/visual, computer or battery-operated equipment in transit or storage; Previously damaged or repaired items; Previously damaged or loose veneer; Furniture with the original glue dried out; Any loose items not boxed; Plants (live,artifical, or dried);If one item in a set is damaged, only that one item is covered, not the whole set.
+        </div>
+        
+        
+        <!-- Eighth Row -->
+        <div class="column full-width">
+            <form action="/signature1" method="POST">
+              <center>
+              <label for="start-time">Start Time:</label>
+              <input type="time" id="start_time" name="start_time" required>
+              </center>
+              <br>
+            By signing below, you acknowledge that you have read and agreed to all the terms and conditions outlined above. Furthermore, you confirm that you authorize our crew to commence work at the agreed start time. Thank you for choosing our services.
+            
+            <input type="hidden" id="signature_input" name="signature_input">
+            <input type="hidden" id="random_string" name="random_string">
+            <canvas id="signature" width="800px" height="300px" style="border:solid 1px black;"></canvas><br><br>
+            <center> <button type="button" onclick="saveSignature()">Sign and Accept</button> </center>
+        </form>
+          
+        </div>
+      </div>
+        
+ <!-- JAVASCRIPT FOR DRAWING PAD FUNCTIONS -->
+      <script>
+        const canvas = document.getElementById('signature');
+        const ctx = canvas.getContext('2d');
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        canvas.addEventListener('mousedown', (event) => {
+        isDrawing = true;
+        [lastX, lastY] = [event.offsetX, event.offsetY];
+        });
+
+        canvas.addEventListener('mousemove', (event) => {
+        if (!isDrawing) return;
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(event.offsetX, event.offsetY);
+        ctx.stroke();
+        [lastX, lastY] = [event.offsetX, event.offsetY];
+        });
+
+        canvas.addEventListener('mouseup', () => {
+        isDrawing = false;
+        });
+
+        function generateRandomString(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+              result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
+        }
+        const randomString = generateRandomString(20);
+
+        function saveSignature() {
+        const signature = canvas.toDataURL('image/png');
+        document.getElementById('signature_input').value = signature;
+        document.getElementById('random_string').value = randomString;
+        document.querySelector('form').submit();
+        }
+        </script>
+</body>
+</html>
