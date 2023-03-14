@@ -12,6 +12,10 @@ router.post('/signature1', customerController.POSTsignature1);
 
 router.get('/signedBol', customerController.GETsignedBol);
 
+router.post('/boldelivery', customerController.POSTbolDelivery);
+
+router.post('/bolmaterials', customerController.POSTbolMaterials);
+
 router.use('/', customerController.anyPage);
 
 module.exports = router;

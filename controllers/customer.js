@@ -167,3 +167,62 @@ exports.POSTsignature1 = (req,res,next) => {
 exports.GETsignedBol = (req,res,next) => {
     res.render('signedbol');
 }
+
+
+exports.POSTbolDelivery = (req,res,next) => {
+
+    if(req.session.moveid){
+
+
+        Move.findByPk(req.session.moveid).then(result => {
+                res.render('boldelivery.ejs', {
+                    result: result,
+                    moveid:req.session.moveid,
+                    total_boolean: false,
+                    final_version: false,
+                    signature_delivery: false
+                });
+                console.log(result);
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+}
+
+
+
+exports.POSTbolMaterials = (req,res,next) => {
+    Move.findByPk(req.session.moveid).then(result => {
+        if(req.body.cpb15>0) { result.cpb15 = req.body.cpb15; }
+        if(req.body.cpb30>0){ result.cpb30 = req.body.cpb30; }
+        if(req.body.cpb45>0){ result.cpb45 = req.body.cpb45; }
+        if(req.body.cpb60>0) { result.cpb60 = req.body.cpb60; }
+        if(req.body.cpmirror>0){ result.cpmirror = req.body.cpmirror; }
+        if(req.body.cpdishpack>0){ result.cpdishpack = req.body.cpdishpack; }
+        if(req.body.cpmattress>0){ result.cpmattress = req.body.cpmattress; }
+
+        
+        if(req.body.opb15>0) { result.opb15 = req.body.opb15; }
+        if(req.body.opb30>0){ result.opb30 = req.body.opb30; }
+        if(req.body.opb45>0){ result.opb45 = req.body.opb45; }
+        if(req.body.opb60>0) { result.opb60 = req.body.opb60; }
+        if(req.body.opmirror>0){ result.opmirror = req.body.opmirror; }
+        if(req.body.opdishpack>0){ result.opdishpack = req.body.opdishpack; }
+        if(req.body.opmattress>0){ result.opmattress = req.body.opmattress; }
+        if(req.body.optape>0) { result.optape = req.body.optape; }
+        if(req.body.opbubble>0){ result.opbubble = req.body.opbubble; }
+        
+        return result.save();
+    }).then(result => {
+        res.render('boldelivery.ejs', {
+            result: result,
+            moveid:req.session.moveid,
+            total_boolean: false,
+            final_version: false,
+            signature_delivery: false
+        });
+        console.log(result);
+}).catch(err => {
+    console.log(err);
+})
+}
