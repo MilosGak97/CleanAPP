@@ -5,10 +5,31 @@ exports.anyPage = (req,res,next) => {
 }
 
 exports.getLOGIN = (req,res,next) => {
-    res.render('index');
+    if(req.session.moveid == true){
+        res.redirect('/mybol');
+    }else{
+        res.render('login');
+    }
 }
 
 exports.postLOGIN = (req,res,next) => {
-    console.log(req.body.email);
-    return res.send(req.body.email);
+    const email = req.body.email;
+    const passcode = req.body.password;
+
+    Move.findAll({
+        where: {
+            email: email,
+            passcode: passcode
+        }
+    }).then(results => {
+        if(results.length > 0){
+        const result = results[0];
+        req.session.moveid = result.id;
+        res.redirect(`/mybol`);
+        }else{
+            res.redirect("/login");
+        }
+    }).catch( err =>    {
+        console.log(err);
+    })
 }
