@@ -1,0 +1,85 @@
+
+body{
+    background:lightgrey;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* First and Third Row - creates 3 columns of equal width */
+  grid-gap: 0px; /* adds a gap between columns */
+  max-width: 1000px; /* sets a maximum width for the grid container */
+  padding-left:30px;
+  padding-right:30px;
+  padding-top:15px;
+  padding-bottom:15px;
+  background:white;
+  width: 100%; /* sets the width of the grid container to 60% */
+  margin: 0 auto; /* centers the grid container horizontally */
+}
+
+.column {
+  background-color: #ffffff;
+  padding: 20px;
+  text-align: left;
+  border: 1px solid black; /* adds a 1px black border to each column */
+  margin: 0px;
+}
+
+
+/* Second and Fourth Row - spans 3 columns */
+.span-3 {
+  grid-column: 1 / span 3;
+}
+
+/* Fifth to Eighth Row - full-width columns */
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.column h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  margin-top:-10px;
+}
+
+.column p {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.pu{
+    margin:0;
+    margin-top:-20px;
+    margin-bottom:-20px;
+    float:left;
+    width:44%;
+    padding-left:3%;
+    padding-right:3%;
+    border-right: solid black 1px;
+    padding-bottom:20px;
+}
+.del{
+    margin:0;
+    margin-top:-20px;
+    margin-bottom:-20px;
+    float:left;
+    width:43%;
+    padding-left:3%;
+    padding-right:3%;
+    border-left: solid black 1px;
+    padding-bottom:20px;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+th, td {
+border: 1px solid black;
+padding: 8px;
+text-align: left;
+}
+
+th {
+background-color: gray;
+color: white;
+}

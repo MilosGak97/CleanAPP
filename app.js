@@ -2,19 +2,19 @@ const express = require('express');
 const app = express();
 const sequelize = require('./util/database');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-sequelize.authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch((error) => {
-    console.error('Unable to connect to the database:', error);
-  });
-
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+
+
 
 app.get('/login', (req,res,next) => {
     res.render('index');
@@ -29,4 +29,14 @@ app.use('/', (req, res, next) => {
     res.send('Hello World');
   });
   
-app.listen(8080);
+
+sequelize
+  //.sync({ force: true })
+  .sync()
+  .then(result => {
+    //console.log(result);
+    app.listen(8080);
+  })
+  .catch(err => {
+    console.log(err);
+  });
