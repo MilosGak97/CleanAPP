@@ -279,6 +279,7 @@ exports.POSTbolEndTime = (req,res,next) => {
         }
         const labor_total = result.rate * labor_time;
         const travel_total = result.travel_time * result.rate;
+        const deposit = result.deposit;
 
         /* FORMA ZA MATERIALS */
         
@@ -288,7 +289,7 @@ exports.POSTbolEndTime = (req,res,next) => {
         add_service_2_total = result.add_service_22 * result.add_service_222;
         add_service_3_total = result.add_service_33 * result.add_service_333;
 
-        let subtotal= labor_total + travel_total + add_service_1_total + add_service_2_total + add_service_3_total;
+        let subtotal= labor_total + travel_total + add_service_1_total + add_service_2_total + add_service_3_total + packingmaterials - deposit;
         let subtotalcc;
         let merchantfee = subtotal * 0.03;
         if(req.body.processingfee == "true"){
@@ -411,4 +412,64 @@ exports.POSTsignature2 = (req,res,next) => {
         console.log(err);
     });
 
+}
+
+exports.GETcreatecustomer = (req,res,next) => {
+    res.render('admin/createcustomer');
+}
+
+exports.POSTcreatecustomer = (req,res,next) => {
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
+    const phone = req.body.phone;
+    const email = req.body.email;
+    const passcode = req.body.passcode;
+    const rate = req.body.rate;
+    const crew_size = req.body.crew_size;
+    const truck_number = req.body.truck_number;
+    const travel_time = req.body.travel_time;
+    const deposit = req.body.deposit;
+    const origin_address = req.body.origin_address;
+    const origin_address2 = req.body.origin_address2;
+    const origin_city = req.body.origin_city;
+    const origin_state = req.body.origin_state;
+    const origin_zipcode = req.body.origin_zipcode;
+    const destination_address = req.body.destination_address;
+    const destination_address2 = req.body.destination_address2;
+    const destination_city = req.body.destination_city;
+    const destination_state = req.body.destination_state;
+    const destination_zipcode = req.body.destination_zipcode;
+
+
+    Move.create({
+        first_name: first_name,
+        last_name: last_name,
+        phone: phone,
+        email: email,
+        passcode: passcode,
+        rate: rate,
+        crew_size: crew_size,
+        truck_number: truck_number,
+        travel_time: travel_time,
+        deposit: deposit,
+        origin_address: origin_address,
+        origin_address2: origin_address2,
+        origin_city: origin_city,
+        origin_state: origin_state,
+        origin_zipcode: origin_zipcode,
+        destination_address: destination_address,
+        destination_address2: destination_address2,
+        destination_city: destination_city,
+        destination_state: destination_state,
+        destination_zipcode: destination_zipcode
+      }).then(newMove => {
+        // The new move instance is created and saved to the database
+        console.log('New move created:', newMove);
+        res.send("New move created.")
+      }).catch(err => {
+        // Handle any errors that may occur during the creation process
+        console.error('Error creating move:', err);
+        res.send("Error, check the logs");
+      });
+      
 }

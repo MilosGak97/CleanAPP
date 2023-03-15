@@ -20,6 +20,16 @@ router.post('/bolendtime', customerController.POSTbolEndTime);
 
 router.post('/signature2', customerController.POSTsignature2);
 
+
+/* ---------- ADD CUSTOMERS -------------------- */ 
+
+router.get('/createcustomer', customerController.GETcreatecustomer);
+
+router.post('/createcustomer', customerController.POSTcreatecustomer);
+
+
+
+
 router.use('/', customerController.anyPage);
 
 module.exports = router;
