@@ -27,6 +27,15 @@ router.get('/createcustomer', customerController.GETcreatecustomer);
 
 router.post('/createcustomer', customerController.POSTcreatecustomer);
 
+router.get('/createinput1', customerController.GETcreateinput1);
+router.get('/createinput2', customerController.GETcreateinput2);
+router.get('/createinput3', customerController.GETcreateinput3);
+
+
+router.post('/input1', customerController.POSTinput1);
+router.post('/input2', customerController.POSTinput2);
+router.post('/input3', customerController.POSTinput3);
+
 
 
 

@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize('node-complete', 'milosgak', 'TheDVTN2020', {
   host: 'mydb.cpi6e39gnpl9.us-east-2.rds.amazonaws.com',
   dialect: 'mysql',
-  logging: true, 
+  logging: false,
   port: 3306
 });
 

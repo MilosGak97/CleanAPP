@@ -473,3 +473,138 @@ exports.POSTcreatecustomer = (req,res,next) => {
       });
       
 }
+
+
+/*                       */
+
+exports.GETcreateinput1 = (req,res,next) => {
+    res.render('input1');
+}
+exports.GETcreateinput2 = (req,res,next) => {
+    res.render('input2');
+}
+exports.GETcreateinput3 = (req,res,next) => {
+    res.render('input3');
+}
+
+exports.POSTinput1 = (req,res,next) => {
+    const signature1_datetime = req.body.signature1_datetime;
+    const start_date = req.body.start_date;
+    const start_time = req.body.start_time;
+    const end_date = req.body.end_date;
+    const end_time = req.body.end_time;
+    const signature2_datetime = req.body.signature2_datetime;
+    const signatures_ip = req.body.signatures_ip;
+    const packingmaterials = req.body.packingmaterials;
+    const subtotal = req.body.subtotal;
+    const subtotalcc = req.body.subtotalcc;
+
+    /* packing materials */
+    const cpb15 = req.body.cpb15;
+    const cpb30 = req.body.cpb30;
+    const cpb45 = req.body.cpb45;
+    const cpb60 = req.body.cpb60;
+    const cpmirror = req.body.cpmirror;
+    const cpdishpack = req.body.cpdishpack;
+    const cpmattress = req.body.cpmattress;
+    const opb15 = req.body.opb15;
+    const opb30 = req.body.opb30;
+    const opb45 = req.body.opb45;
+    const opb60 = req.body.opb60;
+    const opmirror = req.body.opmirror;
+    const opdishpack = req.body.opdishpack;
+    const opmattress = req.body.opmattress;
+    const optape = req.body.optape;
+    const opbubble = req.body.opbubble;
+
+    /* additional service */
+    const add_service_1 = req.body.add_service_1;
+    const add_service_11 = req.body.add_service_11;
+    const add_service_111 = req.body.add_service_111;
+    const add_service_2 = req.body.add_service_2;
+    const add_service_22 = req.body.add_service_22;
+    const add_service_222 = req.body.add_service_222;
+    const add_service_3 = req.body.add_service_3;
+    const add_service_33 = req.body.add_service_33;
+    const add_service_333 = req.body.add_service_333;
+
+
+        /* FORMA ZA LABOR TIME I TRAVEL TIME*/
+        const date1 = new Date(`${start_date}T${start_time}Z`).toISOString();
+        const date2 = new Date(`${end_date}T${end_time}Z`).toISOString();
+        
+        const start_datetime = new Date(date1);
+        const end_datetime = new Date(date2);
+
+        const diffInMs = Math.abs(end_datetime - start_datetime);
+        const fifteenminutes = Math.ceil(diffInMs / 900000);
+
+        let labor_time2;
+        if((fifteenminutes * 0.25) < 2){
+            labor_time2 = 2;
+        }else{
+            labor_time2 = fifteenminutes * 0.25;
+        }
+
+
+
+    /* making document id */
+    const document_id = crypto.randomBytes(15).toString('hex');
+
+    /* update in base */ 
+    Move.findByPk(req.session.moveid).then(result => {
+        result.signature1_datetime = signature1_datetime;
+        result.start_date = start_date;
+        result.start_time = start_time;
+        result.labor_time = labor_time2;
+        result.end_date = end_date;
+        result.end_time = end_time;
+        result.signature2_datetime = signature2_datetime;
+        result.signatures_ip = signatures_ip;
+        result.packingmaterials = packingmaterials;
+        result.subtotal = subtotal;
+        result.subtotalcc = subtotalcc;
+        
+        /* packing materials */
+        result.cpb15 = cpb15;
+        result.cpb30 = cpb30;
+        result.cpb45 = cpb45;
+        result.cpb60 = cpb60;
+        result.cpmirror = cpmirror;
+        result.cpdishpack = cpdishpack;
+        result.cpmattress = cpmattress;
+        result.opb15 = opb15;
+        result.opb30 = opb30;
+        result.opb45 = opb45;
+        result.opb60 = opb60;
+        result.opmirror = opmirror;
+        result.opdishpack = opdishpack;
+        result.opmattress = opmattress;
+        result.optape = optape;
+        result.opbubble = opbubble;
+        
+        /* additional service */
+        result.add_service_1 = add_service_1;
+        result.add_service_11 = add_service_11;
+        result.add_service_111 = add_service_111;
+        result.add_service_2 = add_service_2;
+        result.add_service_22 = add_service_22;
+        result.add_service_222 = add_service_222;
+        result.add_service_3 = add_service_3;
+        result.add_service_33 = add_service_33;
+        result.add_service_333 = add_service_333;
+
+        /* document_id */
+        result.document_id = document_id;
+        
+        return result.save();
+    }).catch(err => {
+        console.log(err);
+    });
+}
+exports.POSTinput2 = (req,res,next) => {
+    res.render('input2');
+}
+exports.POSTinput3 = (req,res,next) => {
+    res.render('input3');
+}

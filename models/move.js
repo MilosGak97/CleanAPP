@@ -21,7 +21,7 @@ const Move = sequelize.define('move',{
     rate: Sequelize.INTEGER,
     crew_size: Sequelize.INTEGER,
     truck_number: Sequelize.INTEGER,
-    travel_time: Sequelize.INTEGER,
+    travel_time: Sequelize.FLOAT,
     deposit: Sequelize.INTEGER,
 
     origin_address: Sequelize.STRING,
@@ -93,27 +93,29 @@ const Move = sequelize.define('move',{
     end_time: Sequelize.TIME,
     
     add_service_1: Sequelize.STRING,
-    add_service_11: Sequelize.INTEGER,
-    add_service_111: Sequelize.INTEGER,
+    add_service_11: Sequelize.FLOAT,
+    add_service_111: Sequelize.FLOAT,
 
     add_service_2: Sequelize.STRING,
-    add_service_22: Sequelize.INTEGER,
-    add_service_222: Sequelize.INTEGER,
+    add_service_22: Sequelize.FLOAT,
+    add_service_222: Sequelize.FLOAT,
 
     add_service_3: Sequelize.STRING,
-    add_service_33: Sequelize.INTEGER,
-    add_service_333: Sequelize.INTEGER,
+    add_service_33: Sequelize.FLOAT,
+    add_service_333: Sequelize.FLOAT,
 
     
     signature2_url: Sequelize.STRING,
     signature2_hash: Sequelize.STRING,
     signature2_datetime: Sequelize.DATE,
 
-    packingmaterials: Sequelize.INTEGER,
-    labor_time: Sequelize.INTEGER,
-    subtotal: Sequelize.INTEGER,
-    subtotalcc: Sequelize.INTEGER,
-    merchantfee: Sequelize.INTEGER
+    packingmaterials: Sequelize.FLOAT,
+    labor_time: Sequelize.FLOAT,
+    subtotal: Sequelize.FLOAT,
+    subtotalcc: Sequelize.FLOAT,
+    merchantfee: Sequelize.FLOAT,
+    signatures_ip: Sequelize.STRING,
+    document_id: Sequelize.STRING
 
 });
 
