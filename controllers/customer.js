@@ -603,8 +603,72 @@ exports.POSTinput1 = (req,res,next) => {
     });
 }
 exports.POSTinput2 = (req,res,next) => {
-    res.render('input2');
+    upload.none();
+
+    const signature_hash = crypto.randomBytes(25).toString('hex');
+    
+    console.log("LoadTracker 201")
+    const signature = req.body.signature_input;
+    console.log("LoadTracker 202")
+    const moveid = req.session.moveid;
+    
+    console.log("LoadTracker 203")
+    
+    // decode the signature data and save to file
+    const data = signature.replace(/^data:image\/\w+;base64,/, '');
+    
+    console.log("LoadTracker 204")
+    const buffer = Buffer.from(data, 'base64');
+    console.log("LoadTracker 205")
+    const filename = `${signature_hash}_signature.png`;
+    
+    console.log("LoadTracker 206")
+    const filepath = path.join(__dirname, '../signatures', filename);
+    
+    console.log("LoadTracker 207")
+    fs.writeFileSync(filepath, buffer);
+    
+    console.log("LoadTracker 208")
+
+    Move.findByPk(moveid).then(result => {
+        
+    console.log("LoadTracker 209")
+        result.signature2_url = filename;
+        result.signature2_hash = signature_hash;
+        
+    console.log("LoadTracker 210")
+        return result.save();
+        
+    }).catch(err => {
+        console.log("LoadTracker 211")
+        console.log(err);
+    });
 }
 exports.POSTinput3 = (req,res,next) => {
-    res.render('input3');
+    upload.none();
+
+    const signature_hash = crypto.randomBytes(25).toString('hex');
+    const signature = req.body.signature_input;
+    const moveid = req.session.moveid;
+    
+    // decode the signature data and save to file
+    const data = signature.replace(/^data:image\/\w+;base64,/, '');
+    const buffer = Buffer.from(data, 'base64');
+    const filename = `${signature_hash}_signature.png`;
+    const filepath = path.join(__dirname, '../signatures', filename);
+    fs.writeFileSync(filepath, buffer);
+
+
+    Move.findByPk(req.session.moveid).then(result => {
+        result.signature1_url = filename;
+        result.signature1_hash = signature_hash;
+        console.log("LoadTracker 101")
+        return result.save();
+        }).then(() => {
+            console.log("LoadTracker 102")
+            res.redirect('/signedbol');
+      })
+      .catch(err =>{
+        console.log(err);
+    });
 }

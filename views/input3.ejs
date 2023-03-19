@@ -1,58 +1,52 @@
 
-        
-        <!-- Eighth Row -->
-        <div class="column full-width">
-            <form action="/signature1" method="POST">
-            <input type="hidden" id="signature_input" name="signature_input">
-            <input type="hidden" id="random_string" name="random_string">
-            <canvas id="signature" width="800px" height="300px" style="border:solid 1px black;"></canvas><br><br>
-            <center> <button type="button" onclick="saveSignature()">Sign and Accept</button> </center>
-        </form>
-          
-        </div>
-      </div>
-        
+<div class="column full-width">
+    <form action="/input3" method="POST" id="signature2">
+    <input type="hidden" id="signature_input" name="signature_input">
+    <canvas id="signature" width="800px" height="300px" style="border:solid 1px black;"></canvas><br><br>
+    <center> <button type="button" onclick="saveSignature()">Sign and Accept</button> </center>
+</form>
+  
+
+     
  <!-- JAVASCRIPT FOR DRAWING PAD FUNCTIONS -->
-      <script>
-        const canvas = document.getElementById('signature');
-        const ctx = canvas.getContext('2d');
+ <script>
+    const canvas = document.getElementById('signature');
+    const ctx = canvas.getContext('2d');
 
-        let isDrawing = false;
-        let lastX = 0;
-        let lastY = 0;
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
 
-        canvas.addEventListener('mousedown', (event) => {
-        isDrawing = true;
-        [lastX, lastY] = [event.offsetX, event.offsetY];
-        });
+    canvas.addEventListener('mousedown', (event) => {
+    isDrawing = true;
+    [lastX, lastY] = [event.offsetX, event.offsetY];
+    });
 
-        canvas.addEventListener('mousemove', (event) => {
-        if (!isDrawing) return;
-        ctx.beginPath();
-        ctx.moveTo(lastX, lastY);
-        ctx.lineTo(event.offsetX, event.offsetY);
-        ctx.stroke();
-        [lastX, lastY] = [event.offsetX, event.offsetY];
-        });
+    canvas.addEventListener('mousemove', (event) => {
+    if (!isDrawing) return;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(event.offsetX, event.offsetY);
+    ctx.stroke();
+    [lastX, lastY] = [event.offsetX, event.offsetY];
+    });
 
-        canvas.addEventListener('mouseup', () => {
-        isDrawing = false;
-        });
+    canvas.addEventListener('mouseup', () => {
+    isDrawing = false;
+    });
 
-        function generateRandomString(length) {
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let result = '';
-            for (let i = 0; i < length; i++) {
-              result += characters.charAt(Math.floor(Math.random() * characters.length));
-            }
-            return result;
+    function generateRandomString(length) {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < length; i++) {
+          result += characters.charAt(Math.floor(Math.random() * characters.length));
         }
-        const randomString = generateRandomString(20);
+        return result;
+    }
 
-        function saveSignature() {
-        const signature = canvas.toDataURL('image/png');
-        document.getElementById('signature_input').value = signature;
-        document.getElementById('random_string').value = randomString;
-        document.querySelector('form').submit();
-        }
-        </script>
+    function saveSignature() {
+    const signature = canvas.toDataURL('image/png');
+    document.getElementById('signature_input').value = signature;
+    document.querySelector('#signature2').submit();
+    }
+    </script>

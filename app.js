@@ -32,7 +32,19 @@ const options = {
         }
     }
   }; /* test end */
-  
+
+
+  /* LOGOUT */
+  const mysql = require('mysql2/promise');
+const { Sequelize } = require('sequelize');
+
+
+/* -------------- */
+
+
+
+
+
   const store = new MySQLStore(options); /* test */
   
   app.use(session({
