@@ -5,6 +5,8 @@ const MySQLStore = require('express-mysql-session')(session); /* test */
 const sequelize = require('./util/database');
 const bodyParser = require('body-parser');
 const path = require('path');
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
+const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
 const customerRoutes = require('./routes/customer');
 
@@ -55,6 +57,39 @@ const { Sequelize } = require('sequelize');
   }));
 
 app.use(customerRoutes);
+
+
+/* RECEIVE SMS */
+app.post('/sms', (req, res) => {
+  const twiml = new MessagingResponse();
+
+  // Your custom response logic here
+  /*
+  twiml.message('pusi ga raicu, tomatski. stisni stop ako hoces da stanes pusenje');
+  console.log("STA MAI");
+*/
+
+    console.log(`Message received from ${req.body.From}: ${req.body.Body}`);
+    console.log(`Message received on Twilio number: ${req.body.To}`);
+    
+    res.writeHead(200, { 'Content-Type': 'text/xml' });
+    res.end(twiml.toString());
+});
+
+/* VOICE CALL */
+
+app.post('/voice', (req, res) => {
+  console.log(`Call received from ${req.body.From}`);
+
+  const twiml = new VoiceResponse();
+
+  // Forward the call to another phone number
+  twiml.dial('+17082924802');
+
+  res.writeHead(200, { 'Content-Type': 'text/xml' });
+  res.end(twiml.toString());
+});
+
 
 
 sequelize
