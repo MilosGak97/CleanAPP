@@ -1,0 +1,464 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/dist/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-300 text-[10px] font-poppins">
+    <div class="mx-auto w-[612px] bg-white h-[1008px] border-2 border-gray-400">
+
+        <!------------------ FIRST SECTION -------------------->
+        <div class="flex flex-row mt-2 px-4">
+
+            <div class="w-1/4 bg-white p-3 text-center border-[1px] border-black text-[8px]">
+                <h2 class="font-bold">CONTACTS</h2>
+                office@serbianmovers.com
+                www.serbianmovers.com
+                708-252-4802
+            </div>
+            <div class="w-1/2 text-center px-4 leading-tight">
+                <h2 class="font-bold underline mb-2 tracking-wider"> HOUSEHOLD GOOD BILL OF LADDING </h2>
+                Serbian Movers LLC <br>
+                2720 South River Road #100, <br> 
+                Des Plaines, IL 60018 <br>
+
+                 ILCC: 234623
+            </div>
+            <div class="w-1/4  text-center flex flex-row text-[8px]">
+                <div class="w-3/4 text-[7px]">
+                    <div class="h-[15px] flex items-end w-full justify-end pr-1 ">
+                       BOL NUMBER
+                    </div>
+                    <div class="h-[15px] flex items-end w-full justify-end pr-1 ">
+                       DATE ORDER TAKEN
+                    </div>
+                    <div class="h-[15px] flex items-end w-full justify-end pr-1">
+                      AGREED PICKUP DATE
+                    </div>
+                    <div class="h-[15px] flex items-end w-full justify-end pr-1 ">
+                       ACTUAL PICKUP DATE
+                    </div>
+                    <div class="h-[15px] flex items-end w-full justify-end pr-1 ">
+                      AGREED DELIVERY DATE
+                    </div>
+                </div>
+                <div class="w-1/4">
+                    <input type="text" class="w-full rounded-none h-[14px] border-b-[1px] border-black mt-[1px]" value="NEED SETUP">
+                    <input type="text" class="w-full rounded-none h-[14px] border-b-[1px] border-black mt-[1px]" value="<%=move_date%>">
+                    <input type="text" class="w-full rounded-none h-[14px] border-b-[1px] border-black mt-[1px]" value="<%=move_date%>">
+                    <input type="text" class="w-full rounded-none h-[14px] border-b-[1px] border-black mt-[1px]" value="<%=move_date%>">
+                    <input type="text" class="w-full rounded-none h-[14px] border-b-[1px] border-black mt-[1px]" value="<%=move_date%>">
+                </div>
+            </div>
+        </div>
+        <!------------------ FIRST SECTION ENDS -------------------->
+        <!------------------ SECOND SECTION BEGIN------------------->
+
+        <div class="mx-4 mt-2 border-[1px]  border-black px-2 text-[8px] leading-[10px] text-justify py-[2px] "> <b> Customer: </b> 
+            This Bill of Lading establishes a contract between you and the household goods carrier. It confirms instructions and authorizes the carrier to move, ship , pack and/or perform the services shown. Before you sign this document it is important that you first read entire document, including the back, and that you ask for an explanation of anything that is not clear or that is different from any previous information received from the carrier or the carrier's representatives.
+                
+            </div>
+        
+        <div class="mx-2 px-2 flex flex-row">
+            <div class="w-1/2 border-[1px] border-t-0 mr-1 border-black flex flex-col pb-[4px]">
+                <h2 class="text-center font-semibold underline w-full mt-1  tracking-wider">  ORIGIN </h2>
+                
+                <div class="flex flex-row">
+                    <p class="underline font-medium pl-2">Customer:</p>
+                    <input type="text" class="pl-2 w-full" value="<%=result.first_name%> <%=result.last_name%>">
+                </div>
+                <div class="flex flex-row">
+                    <p class="underline font-medium pl-2">Phone:</p>
+                    <input type="text" class="pl-2 w-full" value="<%=result.phone_%>">
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="flex-shrink-0">
+                        <p class="underline font-medium pl-2 flex-1">Address:</p>
+                    </div>
+                    <div class="flex-grow">
+                        <input type="text" class="pl-2 w-full  mb-[-2px]" value="<%=result.origin_address%>">
+                    </div>
+                    <div class="flex-grow-0">
+                        <p class="underline font-medium pl-2">Unit:</p>
+                    </div>
+                    <div class="flex-1">
+                        <input type="text" class="pl-2  w-full" value="<%=result.origin_address2%>">
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                        <p class="underline font-medium pl-2">City:</p>
+                        <input type="text" class="pl-[2px] flex-grow" value="<%=result.origin_city%>">
+                        <p class="underline font-medium pl-2">State:</p>
+                        <input type="text" class="pl-[2px] w-[16px] text-left  mb-[-2px]" value="<%=result.origin_state%>">
+                        <p class="underline font-medium pl-2">Zip:</p>
+                        <input type="text" class="pl-[2px] w-[38px] mb-[-2px]" value="<%=result.origin_zipcode%>">
+                </div>
+                <div class="flex flex-row">
+                    <p class="underline font-medium pl-2">Email:</p>
+                    <input type="text" class="pl-2 w-full  " value="<%=result.email_changed%>">
+                </div>
+            </div>
+            <div class="w-1/2 border-[1px] ml-1 border-black border-t-0 pb-[4px]">
+                <h2 class="text-center font-semibold underline mt-1  tracking-wider" > DESTINATON </h2>
+                <div class="flex flex-row">
+                    <p class="underline font-medium pl-2">Customer:</p>
+                    <input type="text" class="pl-2 w-full" value="<%=result.first_name%> <%=result.last_name%>">
+                </div>
+                <div class="flex flex-row">
+                    <p class="underline font-medium pl-2">Phone:</p>
+                    <input type="text" class="pl-2 w-full" value="<%=result.phone%>">
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="flex-shrink-0">
+                        <p class="underline font-medium pl-2 flex-1">Address:</p>
+                    </div>
+                    <div class="flex-grow">
+                        <input type="text" class="pl-2 w-full mb-[-4px]" value="<%=result.destination_address%>">
+                    </div>
+                    <div class="flex-grow-0">
+                        <p class="underline font-medium pl-2">Unit:</p>
+                    </div>
+                    <div class="flex-1">
+                        <input type="text" class="pl-2  w-full" value="<%=result.destination_address2%>">
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                        <p class="underline font-medium pl-2">City:</p>
+                        <input type="text" class="pl-[2px] flex-grow" value="<%=result.destination_city%>">
+                        <p class="underline font-medium pl-2">State:</p>
+                        <input type="text" class="pl-[2px] w-[16px] text-left" value="<%=result.destination_state%>">
+                        <p class="underline font-medium pl-2">Zip:</p>
+                        <input type="text" class="pl-[2px] w-[38px]  mb-[-2px]"  value="<%=result.destination_zipcode%>">
+                </div>
+                <div class="flex flex-row">
+                    <p class="underline font-medium pl-2">Email:</p>
+                    <input type="text" class="pl-2 w-full" value="<%=result.email_changed%>">
+                </div>
+            </div>
+        </div>
+    
+        <!------------------ SECOND SECTION END ------------------->
+        <!------------------ THIRD SECTION BEGIN------------------->
+        <div class="mx-4 border-[1px] border-black mt-2 px-2 text-[8px] leading-[10px] text-justify py-[4px]">
+            <h2 class="text-center font-semibold underline w-full text-[10px] mb-[4px] tracking-wider">  INTRASTATE ONLY </h2>By signing this document, the customer confirms their agreement to an hourly rate of $138 for 2 movers and a truck, subject to a 2-hour minimum charge. The customer understands and agrees that the hourly charges will be assessed based on: a) The time spent loading and unloading the shipment; and b) The travel time expended by Serbian Movers LLC from its base point to the property's origin, then to the property's destination, and ultimately returning to its base point. Charges will be billed in 15-minute increments. Please review these terms and ensure your understanding. If you concur, sign this document to confirm your acceptance of the terms and conditions as outlined above.
+
+            The customer acknowledges that Serbian Movers LLC will use Google Maps in offline (no traffic) mode to determine the fastest route, with the displayed time being applied as travel time from the company's base to the customer's origin and from the customer's destination back to the company's base, calculated in 15-minute increments. The driving time between the customer's origin and destination will be incorporated as part of the Job Hours in real time, reflecting the actual time taken to travel from the origin to the destination. </div>
+    <br> Customer also confirms determined the start time and shipment valuation.
+
+        <!------------------ THIRD SECTION ENDS------------------->
+        <!-- EXTRA SECTION -->
+        
+        <div class=" flex flex-row justify-between mx-4 pt-[4px] border-x-[1px] pl-2 pb-[3px] border-b-[1px] border-black text-[8px] pr-4">
+            <strong> Moving Rate: </strong>
+            <div class="inline-flex items-center">
+                <input type="text" value="<%=result.truck_number%>" class="w-[15px] border-b-[1px] border-black text-center">
+                <lablel> Trucks/Vans</lablel>
+            </div>
+            
+            <div class="inline-flex items-center">
+                <input type="text" value="<%=result.crew_size%>" class="w-[15px] border-b-[1px] border-black text-center">
+                <lablel> Crew size</lablel>
+            </div>
+            
+            <div class="inline-flex items-center">
+                <lablel> $</lablel>
+                <input type="text" value="<%=result.rate%>" class="w-[30px] border-b-[1px] border-black text-center">
+                <lablel class="pl-[4px]"> Per Job Hour ,</lablel>
+            </div>
+            
+            <div class="inline-flex items-center">
+                <lablel class="text-[8px]"> <i> Plus </i></lablel>
+            </div>
+            <div class="inline-flex items-center">
+                <input type="text" value="<%=result.travel_time%>" class="w-[25px] border-b-[1px] border-black text-center"> 
+                <lablel> Hrs. Travel Time</lablel>
+            </div>
+        </div>
+        <div class="mx-4 border-[1px] border-black border-t-0 px-2 text-[8px] leading-[10px] text-justify py-[4px] h-[40px]">
+            Signed by Shipper
+        </div>
+    
+        <!-- END EXTRA SECTION -->
+        <!------------------ FOURTH SECTION BEGIN ------------------->
+        <div class=" flex flex-row mx-4 mt-[4px]">
+            <div class="w-1/2 mr-1 border-[1px] border-black text-[8px]">
+                <div class=""> <!-- DETAILS OF PACKING MATERIALS-->
+                        
+                    <h2 class="text-center font-semibold underline w-full text-[10px] pt-1  tracking-wider">  DETAILS OF PACKING MATERIALS </h2>
+
+                    <div class="p-2  w-full text-[8px]">
+                        <table class="table-auto w-full">
+                        <thead>
+                            <tr>
+                                <th class="border border-black p-[2px] w-1/2">Description</th>
+                                <th class="border border-black p-[2px] w-1/6">Quan.</th>
+                                <th class="border border-black p-[2px] w-1/6">Rate </th>
+                                <th class="border border-black p-[2px] w-1/6 underline underline-offset-1">Charges</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">Box, 1.5 cu. ft.</td>
+                            <td class="border border-black p-[2px] pl-2"><%=result.b15%></td>
+                            <td class="border border-black p-[2px] pl-2">$1.75</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">Box, 3.0 cu. ft.</td>
+                            <td class="border border-black p-[2px] pl-2"><%=result.b30%></td>
+                            <td class="border border-black p-[2px] pl-2">$3.15</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">Box, 4.5 cu. ft.</td>
+                            <td class="border border-black p-[2px] pl-2"><%=result.b45%></td>
+                            <td class="border border-black p-[2px] pl-2">$4.90</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">Box, 6.0 cu. ft.</td>
+                            <td class="border border-black p-[2px] pl-2"><%=result.b60%></td>
+                            <td class="border border-black p-[2px] pl-2">$6.55</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">Mirror carton</td>
+                            <td class="border border-black p-[2px] pl-2"><%=result.mirror%></td>
+                            <td class="border border-black p-[2px] pl-2">$8.05</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">DishPack box</td>
+                            <td class="border border-black p-[2px] pl-2"><%=result.dishpack%></td>
+                            <td class="border border-black p-[2px] pl-2">$8.05</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">Mattress Cover</td>
+                            <td class="border border-black p-[2px] pl-2"><%=result.mattress%></td>
+                            <td class="border border-black p-[2px] pl-2">$10.10</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">Tape (per 55 Yd Roll)	</td>
+                            <td class="border border-black p-[2px] pl-2"><%=result.tape%></td>
+                            <td class="border border-black p-[2px] pl-2">$3.15</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">Bubble Wrap (per Sq Ft)</td>
+                            <td class="border border-black p-[2px] pl-2"><%=result.bubble%></td>
+                            <td class="border border-black p-[2px] pl-2">$1.10</td>
+                            <td class="border border-black p-[2px]"></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+                
+                <div class="pl-[4px] border-t-[1px] border-black">
+                    <h2 class="text-left font-semibold underline w-full text-[10px] mb-[2px] pl-[4px] pt-1  tracking-wider">  ESTIMATES </h2>
+                   
+                    <p class="pl-[4px] pr-[8px] py-[2px] leading-[10px] text-justify">
+                        The mover has given a non-binding estimate based on provided information. If actual charges exceed the estimate, you must pay 110% of the estimated amount at delivery, with the remaining balance due within 30 days. By signing, you acknowledge and agree to these terms.
+                    </p>
+                </div>
+                <div class="pl-[4px] border-t-[1px] border-black">
+                    <h2 class="text-left font-semibold underline w-full text-[10px] mb-[2px] pl-[4px] pt-1  tracking-wider">  VALUATION </h2>
+                    <p class="pl-[4px] pr-[8px] py-[2px] leading-[10px] text-justify">
+                        Before the move, the shipper must write the shipment's actual value or "30 cents per pound per article" on the contract. Otherwise, its maximum value will be $2.00 times its weight. Extra charges may apply for values over 30 cents per pound. Declared value isn't insurance; separate insurance can be bought for an additional cost.</p>
+                        <input type="text" class="border-b-[1px] border-black w-5/6 mx-auto text-center mt-[4px] ml-[20px] text-[10px]" value="30 cents per pound per article"> 
+                </div>
+
+
+            </div>
+            <div class="w-1/2 ml-1 border-[1px] border-black  text-[8px]">
+                    
+
+
+                <div class="w-full  text-[8px]"> <!-- DETAILS OF TIME RECORD-->
+                  <h2 class="text-center mt-[2px] font-semibold underline w-full text-[10px] pt-1  tracking-wider">  DETAILS OF TIME RECORD </h2>
+                  <div class="w-full flex flex-row mt-[8px]">   
+                         <div class="w-1/2 ml-[10px] flex flex-row">
+                              <div class="w-[60px]">Start Time:</div>
+                              <input type="text" class="w-[50px] text-center border-b-[1px] border-black" value="8:00 AM">
+                         </div>
+  
+                         <div class="w-1/2 flex flex-row">
+                             <div class="w-[60px]">End Time:</div>
+                             <input type="text" class="w-[50px] border-b-[1px] border-black text-center" value="3:00 PM">
+                         </div>
+
+                  </div>  
+                  <div class="w-full flex flex-row mt-[8px]">   
+                         <div class="w-1/2 ml-[10px]  flex flex-row">
+                              <div class="w-[60px]">Job Hours:</div>
+                              <input type="text" class="w-[50px] text-center border-b-[1px] border-black" value="7HRS">
+                         </div>
+  
+                         <div class="w-1/2  flex flex-row">
+                             <div class="w-[60px]">Travel Time:</div>
+                             <input type="text" class="w-[50px] border-b-[1px] border-black text-center" value="1HR">
+                         </div>
+
+                  </div>  
+                  <div class="w-full flex flex-row mt-[8px]">   
+                         <div class="w-1/2 ml-[10px]  flex flex-row">
+                              <div class="w-[60px]">Break Time:</div>
+                              <input type="text" class="w-[50px] text-center border-b-[1px] border-black" value="45MIN">
+                         </div>
+  
+                         <div class="w-1/2  flex flex-row">
+                             <div class="w-[60px]">Total Hours:</div>
+                             <input type="text" class="w-[50px] border-b-[1px] border-black text-center" value="7HRS 15MIN">
+                         </div>
+
+                  </div>  
+                </div>
+                
+
+                <div class="w-full border-t-[1px] border-black mt-[6px] text-[8px]"> <!-- DETAILS OF TOTAL CHARGES-->
+                    <h2 class="text-center  font-semibold underline w-full text-[10px] pt-1  tracking-wider">  DETAILS OF TOTAL CHARGES </h2>
+                    
+                    <div class="p-2  w-full text-[8px]">
+                        <table class="table-auto w-full">
+                        <thead>
+                            <tr>
+                                <th class="border border-black p-[2px] w-1/2">Description</th>
+                                <th class="border border-black p-[2px] w-1/6">Quan.</th>
+                                <th class="border border-black p-[2px] w-1/6">Rate </th>
+                                <th class="border border-black p-[2px] w-1/6 underline underline-offset-1">Charges</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">Labor Time</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            <td class="border border-black p-[2px] pl-2">$138.00</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2"> + Travel Time</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            <td class="border border-black p-[2px] pl-2">$138.00</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2"> + Materials</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2 border-r-0">+ Additional Charges</td>
+                            <td class="border border-black p-[2px] pl-2 text-center border-none"></td>
+                            <td class="border border-black p-[2px] pl-2 text-center border-none"></td>
+                            <td class="border border-black p-[2px] pl-2 text-center border-l-0"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">+</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">+</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2">+</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr> 
+                        </tbody>
+                        </table>
+                        <table class="table-auto w-full">
+                        <tbody>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2 text-right pr-[6px]"><strong> Total move charges </strong></td>
+                            <td class="border border-black p-[2px] pl-2 w-1/6"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2 text-right pr-[6px]"> Prepayment received</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2 text-right pr-[6px]"> <strong> Total Charges Due </strong></td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2 text-right pr-[6px] text-[6px]">Written estimate + 10% is min amount to be paid at delivery</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2 text-right pr-[6px]"> <strong> Total Paid at Delivery </strong></td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                            <tr>
+                            <td class="border border-black p-[2px] pl-2 text-right"> <span class="text-[6px]"> Must be paid within 30 days  &nbsp;&nbsp;&nbsp; </span>  REMAINING BALANCE</td>
+                            <td class="border border-black p-[2px] pl-2"></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="px-[4px] border-t-[1px] border-black">
+                    <h2 class="text-left font-semibold underline w-full text-[10px] mb-[2px] pl-[4px] pt-1  tracking-wider">  PAYMENT METHOD </h2>
+                    <p class="px-1 text-justify text-[8px] leading-[10px]">The customer and carrier mutually agree that payment at the time of delivery will be made using:</p>
+                    <div class="flex flex-row w-full justify-evenly pb-1 mt-1">
+                        <div class="flex items-center">
+                            <input  type="radio" id="creditCard" name="payment" value="creditCard" class="mr-1 checked">
+                            <label for="creditCard"> Credit Card</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="cash" name="payment" value="cash" class="mr-1">
+                            <label for="cash">Cash</label>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        
+        <div class="mx-4 border-[1px] border-black mt-[5px] px-2 text-[8px] leading-[10px] text-justify py-[4px] h-[40px]">
+            I have conducted a thorough inspection of my belongings and premises, encompassing elevators, floors, and stairwells. No damages have been identified, except those explicitly noted. Both the cab and the rear of the truck are empty, signifying the completion of the job.           
+        </div>
+        
+        <div class="mx-4 border-[1px] border-black border-t-0 px-2 text-[8px] leading-[10px] text-justify py-[4px] h-[40px]">
+            Signed by Shipper
+        </div>
+        
+        <div class="mx-4 border-[1px] border-black border-t-0 px-2 text-[8px] leading-[10px] text-justify py-[4px] h-[40px]">
+            Signed by Driver
+        </div>
+        
+        
+        
+
+    </div>
+
+
+
+        <!-------------------- NOVA SEKCIJA  =============-->
+        
+        </div>
+
+
+
+
+
+</div>
+</body>
+</html>

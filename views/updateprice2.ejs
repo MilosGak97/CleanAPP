@@ -1,0 +1,70 @@
+<form method="POST" action="/updateprice2">
+    <label for="id">ID:</label>
+    <input type="text" name="id" id="id" value="<%= id %>" readonly><br>
+    
+    <label for="subtotalcc">Subtotalcc:</label>
+    <input type="text" name="subtotalcc" id="subtotalcc" value="<%= subtotalcc %>" readonly><br>
+
+    <label for="deposit">- Deposit:</label>
+     - <input type="text" name="deposit" id="deposit" value="<%= deposit %>" readonly><br>
+
+    <label for="travel_time">Travel Time:</label>
+    <input type="text" name="travel_time" id="travel_time" value="<%= travel_time %>" readonly><br>
+    
+    <label for="labor_time"> <strong> Labor Time: </strong></label>
+    <input type="text" name="labor_time" style="width:100px;height:50px;background-color:green;font-weight:900;color:white;font-size:20px;text-align:center;" id="labor_time" value="<%= labor_time %>"> x$138 
+    <input type="text" name="labor_time_value" id="labor_time_value" readonly value="<%= labor_time_value %>"> <br>
+    
+    <label for="subtotal">Subtotal:</label>
+    <input type="text" name="subtotal" id="subtotal" value="<%= subtotal %>"><br> 
+    TREBA DOBITI 0:
+    <label for="subtotal">SubtotalCC:</label> <input type="text" readonly name="subtotalcc" id="subtotalcc" value="<%= subtotalcc %>"> -  
+    <label for="travel_time_value">Travel Time:</label> <input type="text" name="travel_time_value" id="travel_time_value" value="<%= travel_time_value %>" readonly> - 
+    <label for="labor_time"> <strong> Labor Time: </strong></label> <input type="text" name="labor_time_value" id="labor_time_value" value="<%= labor_time_value %> " readonly>  -
+    <label for="packingmaterials"><strong> Packing Materials: </strong></label> <input type="text" name="packingmaterials" readonly id="packingmaterials" value="<%= packingmaterials %>" readonly>  
+    <br> 
+    <h2> <label for="desired_subtotal">TREBA BITI 0:</label> <input type="text" readonly name="desired_subtotal" id="desired_subtotal" style="background-color:lightcoral;font-size:30px;height:50px;text-align:center;font-weight: 900;" value="<%= desired_subtotal %>"> </h2>
+    <br>
+    <h2> <label for="desired_packing">TREBA PACKINGa:</label> <input type="text" readonly name="desired_packing" id="desired_packing" style="background-color:darkgreen;font-size:30px;height:50px;text-align:center;font-weight: 900;" value="<%= desired_packing %>"> </h2>
+    <br>
+    <h2> <label for="trenutno_packing">TRENUTNO:</label> <input type="text" readonly name="trenutno_packing" id="trenutno_packing" style="background-color:lightcoral;font-size:30px;height:50px;text-align:center;font-weight: 900;" value="<%= trenutno_packing %>"> </h2>
+    <br>
+    <h2> <label for="dodati_packing">JOS NABITI:</label> <input type="text" readonly name="dodati_packing" id="dodati_packing" style="background-color:lightcoral;font-size:30px;height:50px;text-align:center;font-weight: 900;" value="<%= dodati_packing %>"> </h2>
+
+    <br>
+    
+    
+    <br><br>
+    <h2>   <label for="b15">B15:</label>
+    <input type="text" name="b15" id="b15" style="height:50px;width:50px;color:white;font-weight:900;font-size:20px;background-color:darkblue;text-align: center;" value="<%= b15 %>"> x $1.75</h2><br>
+</h2> <h2> 
+    <label for="b30">B30:</label>
+    <input type="text" name="b30" id="b30" value="<%= b30 %>" style="height:50px;width:50px;color:white;font-weight:900;font-size:20px;background-color:darkblue;text-align: center;"> x $3.15<br>
+</h2> <h2> 
+    <label for="b45">B45:</label>
+    <input type="text" name="b45" id="b45" value="<%= b45 %>" style="height:50px;width:50px;color:white;font-weight:900;font-size:20px;background-color:darkblue;text-align: center;"> x $4.90<br>
+</h2> <h2> 
+    <label for="b60">B60:</label>
+    <input type="text" name="b60" id="b60" value="<%= b60 %>" style="height:50px;width:50px;color:white;font-weight:900;font-size:20px;background-color:darkblue;text-align: center;"> x $6.55<br>
+</h2> <h2> 
+    <label for="mirror">Mirror:</label>
+    <input type="text" name="mirror" id="mirror" value="<%= mirror %>" style="height:50px;width:50px;color:white;font-weight:900;font-size:20px;background-color:darkblue;text-align: center;"> x $8.05<br>
+</h2> <h2> 
+    <label for="dishpack">Dishpack:</label>
+    <input type="text" name="dishpack" id="dishpack" value="<%= dishpack %>" style="height:50px;width:50px;color:white;font-weight:900;font-size:20px;background-color:darkblue;text-align: center;"> x $8.05<br>
+</h2> <h2> 
+    <label for="mattress">Mattress:</label>
+    <input type="text" name="mattress" id="mattress" value="<%= mattress %>" style="height:50px;width:50px;color:white;font-weight:900;font-size:20px;background-color:darkblue;text-align: center;"> x $10.10<br>
+</h2><h2> 
+    <label for="tape">Tape:</label>
+    <input type="text" name="tape" id="tape" value="<%= tape %>" style="height:50px;width:50px;color:white;font-weight:900;font-size:20px;background-color:darkblue;text-align: center;"> x $3.15<br>
+</h2> <h2> 
+    <label for="bubble">Bubble:</label>
+    <input type="text" name="bubble" id="bubble" value="<%= bubble %>" style="height:50px;width:50px;color:white;font-weight:900;font-size:20px;background-color:darkblue;text-align: center;"> x $1.10<br>
+</h2> <h2> 
+    <label for="packingmaterials">Packing Materials:</label> ovo je trenutno u bazi
+    <input type="text" name="packingmaterials" id="packingmaterials" value="<%= packingmaterials %>" style="height:50px;width:100px;color:white;font-weight:900;font-size:20px;background-color:darkgreen;text-align: center;"><br>
+    </h2> 
+    <input type="submit" value="Submit">
+  </form>
+  

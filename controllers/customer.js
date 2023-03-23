@@ -3,7 +3,7 @@ const fs = require('fs');
 const multer = require('multer'); 
 const upload = multer(); 
 const path = require('path');
-
+const moment = require('moment');
 const crypto = require('crypto');
 
 const sharp = require('sharp');
@@ -417,6 +417,16 @@ exports.POSTsignature2 = (req,res,next) => {
 exports.GETcreatecustomer = (req,res,next) => {
     res.render('admin/createcustomer');
 }
+exports.GETupdateprice = (req,res,next) => {
+    res.render('updateprice');
+}
+
+exports.POSTupdateprice2 = (req,res,next) => {
+    const labor_time = req.body.labor_time;
+    console.log(labor_time);
+
+}
+
 
 exports.POSTcreatecustomer = (req,res,next) => {
     const first_name = req.body.first_name;
@@ -481,10 +491,18 @@ exports.GETcreateinput1 = (req,res,next) => {
     res.render('input1');
 }
 exports.GETcreateinput2 = (req,res,next) => {
-    res.render('input2');
+    Move.findByPk(req.session.moveid).then(result => {
+        res.render('input2', {
+            result:result
+        })
+    })
 }
 exports.GETcreateinput3 = (req,res,next) => {
-    res.render('input3');
+    Move.findByPk(req.session.moveid).then(result => {
+        res.render('input3', {
+            result:result
+        })
+    })
 }
 
 exports.POSTinput1 = (req,res,next) => {
@@ -669,6 +687,51 @@ exports.POSTinput3 = (req,res,next) => {
             res.redirect('/signedbol');
       })
       .catch(err =>{
+        console.log(err);
+    });
+}
+
+exports.moveidsession = (req,res,next) => {
+    
+    req.session.moveid = req.body.customer_id;
+    res.redirect('/createinput2');
+}
+
+exports.signaturerequest = (req,res,next) => {
+    res.render('SIGNATURErequest');
+}
+
+
+exports.requestbolpdf = (req,res,next) => {
+    res.render('requestboldpdf');
+}
+
+exports.seesignatures = (req,res,next) => {
+    Move.findByPk(req.session.moveid).then(result => {
+        res.render('seesignatures', {
+
+            result:result
+    
+        });})
+}
+
+exports.bolpdf = (req,res,next) => {
+    console.log(req.body.customer_id);
+    Move.findByPk(req.body.customer_id).then(result =>{
+        const move_date_mysql = result.move_date;
+        const move_date = moment(move_date_mysql).format('MM/DD/YY');
+
+        /* PACKING */
+        const b15 = result.b15 * 1.75;
+        const b30 = result.b30 * 3.15;
+        const b45 = result.b15 * 4.90;
+        const b60 = result.b30 * 6.55;
+        
+        res.render('bolPDF', {
+        result:result,
+        move_date:move_date
+        });
+    }).catch(err => {
         console.log(err);
     });
 }
