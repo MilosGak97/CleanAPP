@@ -1,8 +1,17 @@
-<h1> SIGNATURE 1</h1>
+<h2>CUSTOMER SIGNATURE 1</h2>
 <img src="/<%=result.signature1_url%>" alt="First signature" style="border:solid 1px black"><br>
 
 
-<h1> SIGNATURE 2</h1>
+<h2>CUSTOMER SIGNATURE 2</h2>
 <img src="/<%=result.signature2_url%>" alt="Second signature" style="border:solid 1px black"><br>
 
 
+<h2> DRIVER SIGNATURE</h2>
+<img src="/<%=result.signature3_url%>" alt="Second signature" style="border:solid 1px black"><br>
+
+
+SEE PDF BILL OF LADDING
+<form action="/bolpdf" method="post">
+    <input type="text" name="customer_id">
+    <button type="submit"> Submit </button>
+</form>

@@ -4,8 +4,9 @@ const multer = require('multer');
 const upload = multer(); 
 const path = require('path');
 const moment = require('moment');
-const crypto = require('crypto');
+require('moment-duration-format'); // require moment-duration-format to format duration output
 
+const crypto = require('crypto');
 const sharp = require('sharp');
 
 
@@ -505,6 +506,14 @@ exports.GETcreateinput3 = (req,res,next) => {
     })
 }
 
+exports.GETcreateinput4 = (req,res,next) => {
+    Move.findByPk(req.session.moveid).then(result => {
+        res.render('input4', {
+            result:result
+        })
+    })
+}
+
 exports.POSTinput1 = (req,res,next) => {
     const signature1_datetime = req.body.signature1_datetime;
     const start_date = req.body.start_date;
@@ -625,40 +634,30 @@ exports.POSTinput2 = (req,res,next) => {
 
     const signature_hash = crypto.randomBytes(25).toString('hex');
     
-    console.log("LoadTracker 201")
     const signature = req.body.signature_input;
-    console.log("LoadTracker 202")
     const moveid = req.session.moveid;
-    
-    console.log("LoadTracker 203")
     
     // decode the signature data and save to file
     const data = signature.replace(/^data:image\/\w+;base64,/, '');
     
-    console.log("LoadTracker 204")
     const buffer = Buffer.from(data, 'base64');
-    console.log("LoadTracker 205")
     const filename = `${signature_hash}_signature.png`;
     
-    console.log("LoadTracker 206")
     const filepath = path.join(__dirname, '../signatures', filename);
     
-    console.log("LoadTracker 207")
     fs.writeFileSync(filepath, buffer);
     
-    console.log("LoadTracker 208")
 
     Move.findByPk(moveid).then(result => {
         
-    console.log("LoadTracker 209")
         result.signature2_url = filename;
         result.signature2_hash = signature_hash;
         
-    console.log("LoadTracker 210")
         return result.save();
         
-    }).catch(err => {
-        console.log("LoadTracker 211")
+    }).then(() => {
+        res.redirect('/createinput3');
+  }).catch(err => {
         console.log(err);
     });
 }
@@ -680,11 +679,35 @@ exports.POSTinput3 = (req,res,next) => {
     Move.findByPk(req.session.moveid).then(result => {
         result.signature1_url = filename;
         result.signature1_hash = signature_hash;
-        console.log("LoadTracker 101")
         return result.save();
         }).then(() => {
-            console.log("LoadTracker 102")
-            res.redirect('/signedbol');
+            res.redirect('/createinput4');
+      })
+      .catch(err =>{
+        console.log(err);
+    });
+}
+exports.POSTinput4 = (req,res,next) => {
+    upload.none();
+
+    const signature_hash = crypto.randomBytes(25).toString('hex');
+    const signature = req.body.signature_input;
+    const moveid = req.session.moveid;
+    
+    // decode the signature data and save to file
+    const data = signature.replace(/^data:image\/\w+;base64,/, '');
+    const buffer = Buffer.from(data, 'base64');
+    const filename = `${signature_hash}_signature.png`;
+    const filepath = path.join(__dirname, '../signatures', filename);
+    fs.writeFileSync(filepath, buffer);
+
+
+    Move.findByPk(req.session.moveid).then(result => {
+        result.signature3_url = filename;
+        result.signature3_hash = signature_hash;
+        return result.save();
+        }).then(() => {
+            res.redirect('/seesignatures');
       })
       .catch(err =>{
         console.log(err);
@@ -717,19 +740,81 @@ exports.seesignatures = (req,res,next) => {
 
 exports.bolpdf = (req,res,next) => {
     console.log(req.body.customer_id);
-    Move.findByPk(req.body.customer_id).then(result =>{
+    req.session.moveid = req.body.customer_id;
+    Move.findByPk(req.session.moveid).then(result =>{
         const move_date_mysql = result.move_date;
         const move_date = moment(move_date_mysql).format('MM/DD/YY');
 
         /* PACKING */
-        const b15 = result.b15 * 1.75;
-        const b30 = result.b30 * 3.15;
-        const b45 = result.b15 * 4.90;
-        const b60 = result.b30 * 6.55;
+        const b15_prep = result.b15 * 1.75;
+        const b30_prep = result.b30 * 3.15;
+        const b45_prep = result.b45 * 4.90;
+        const b60_prep = result.b60 * 6.55;
+        const mirror_prep = result.mirror * 8.05;
+        const dishpack_prep = result.dishpack * 8.05;
+        const mattress_prep = result.mattress * 10.10;
+        const tape_prep = result.tape * 3.15;
+        const bubble_prep = result.bubble * 1.10;
+
+        const b15 = b15_prep.toFixed(2);
+        const b30 = b30_prep.toFixed(2);
+        const b45 = b45_prep.toFixed(2);
+        const b60 = b60_prep.toFixed(2);
+        const mirror = mirror_prep.toFixed(2);
+        const dishpack = dishpack_prep.toFixed(2);
+        const mattress = mattress_prep.toFixed(2);
+        const tape = tape_prep.toFixed(2);
+        const bubble = bubble_prep.toFixed(2);
+
+        const start_time_prep = result.start_time;
+        const end_time_prep = result.end_time;
+        const travel_time_prep =  moment.duration({ hours: result.travel_time }); // create a duration object with 1.5 hours
+        const total_hours = 0;
+        const break_time = 0;
+
+        const start_time = moment(start_time_prep, 'HH:mm:ss').format('h:mm A'); // convert to 12-hour time format
+        const end_time = moment(end_time_prep, 'HH:mm:ss').format('h:mm A'); // convert to 12-hour time format
+
+
         
+        /* duration */
+        const dateTimeStrStart = moment(`${move_date_mysql}T${start_time_prep}`).toISOString(); // combine date and time and format to ISO-8601 format
+        const dateTimeStrEnd = moment(`${move_date_mysql}T${end_time_prep}`).toISOString(); // combine date and time and format to ISO-8601 format
+        
+        const duration = moment.duration(moment(dateTimeStrEnd).diff(moment(dateTimeStrStart))); // calculate duration using moment.duration()
+
+        const jobhrs = duration.format('h[HR] m [MIN]')
+        
+        const travel_time = travel_time_prep.format('h[HR] m [MIN]');
+
+        const totalhrs_prep = travel_time_prep.add(duration); // add the two duration objects together
+
+        const totalhrs = totalhrs_prep.format('h[HR] m [MIN]');
+
+        const travel_time_charges =  result.travel_time*138;
+
+        const labor_time_charges = result.labor_time*138;
+
+
         res.render('bolPDF', {
         result:result,
-        move_date:move_date
+        move_date:move_date,
+        b15:b15,
+        b30:b30,
+        b45:b45,
+        b60:b60,
+        mirror:mirror,
+        dishpack:dishpack,
+        mattress:mattress,
+        tape:tape,
+        bubble:bubble,
+        start_time:start_time,
+        end_time:end_time,
+        jobhrs:jobhrs,
+        travel_time:travel_time,
+        totalhrs:totalhrs,
+        travel_time_charges: travel_time_charges,
+        labor_time_charges: labor_time_charges 
         });
     }).catch(err => {
         console.log(err);

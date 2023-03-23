@@ -30,11 +30,13 @@ router.post('/createcustomer', customerController.POSTcreatecustomer);
 router.get('/createinput1', customerController.GETcreateinput1);
 router.use('/createinput2', customerController.GETcreateinput2);
 router.use('/createinput3', customerController.GETcreateinput3);
+router.use('/createinput4', customerController.GETcreateinput4);
 
 
 router.post('/input1', customerController.POSTinput1);
 router.post('/input2', customerController.POSTinput2);
 router.post('/input3', customerController.POSTinput3);
+router.post('/input4', customerController.POSTinput4);
 
  /*
 router.get('/updateprice', customerController.GETupdateprice);

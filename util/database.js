@@ -4,7 +4,8 @@ const sequelize = new Sequelize('node-complete', 'milosgak', 'TheDVTN2020', {
   host: 'mydb.cpi6e39gnpl9.us-east-2.rds.amazonaws.com',
   dialect: 'mysql',
   logging: false,
-  port: 3306
+  port: 3306,
+  timezone: '-06:00'
 });
 
 /*

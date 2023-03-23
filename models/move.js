@@ -56,7 +56,16 @@ const Move = sequelize.define('moves', {
   signatures_ip: Sequelize.STRING,
   document_id: Sequelize.STRING,
   email_changed: Sequelize.STRING,
-  phone_changed: Sequelize.STRING
+  phone_changed: Sequelize.STRING,
+  email_changed: Sequelize.STRING,
+  bol_number: Sequelize.STRING,
+  estimated_hrs: Sequelize.STRING,
+  estimated_packing: Sequelize.STRING,
+  signature3_url: Sequelize.STRING,
+  signature3_hash: Sequelize.STRING,
+  signature3_datetime: Sequelize.DATE
+  
+
 });
 
 module.exports = Move;
