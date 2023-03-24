@@ -62,8 +62,8 @@ const Move = sequelize.define('moves', {
   estimated_hrs: Sequelize.STRING,
   estimated_packing: Sequelize.STRING,
   signature3_url: Sequelize.STRING,
-  signature3_hash: Sequelize.STRING,
-  signature3_datetime: Sequelize.DATE
+  signature3_datetime: Sequelize.DATE,
+  signature3_hash: Sequelize.STRING
   
 
 });

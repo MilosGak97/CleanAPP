@@ -795,7 +795,22 @@ exports.bolpdf = (req,res,next) => {
 
         const labor_time_charges = result.labor_time*138;
 
+        const signature1_datetime = result.signature1_datetime;
+        const signature2_datetime = result.signature2_datetime;
 
+        const datetime1 = moment(result.signature1_datetime); /*  */
+        const result_datetime1 = datetime1.add(6, 'hours'); /* OVAJ DOBAR SADA - SIGNATURE 1 */
+
+        
+        const datetime2 = moment(result.signature2_datetime); /*  */
+        const result_datetime2 = datetime2.add(6, 'hours'); /* OVAJ DOBAR SADA - SIGNATURE 2 */
+        
+        const datetime3 = moment(result.signature3_datetime); /* OVAJ DOBAR NE DIRAJ */
+/*
+        const converted = datetime.tz(timezone);
+
+*/
+        console.log(signature1_datetime);
         res.render('bolPDF', {
         result:result,
         move_date:move_date,
@@ -814,7 +829,10 @@ exports.bolpdf = (req,res,next) => {
         travel_time:travel_time,
         totalhrs:totalhrs,
         travel_time_charges: travel_time_charges,
-        labor_time_charges: labor_time_charges 
+        labor_time_charges: labor_time_charges ,
+        signature1_datetime:result_datetime1,
+        signature2_datetime:result_datetime2,
+        signature3_datetime:datetime3
         });
     }).catch(err => {
         console.log(err);
