@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Move Estimate</title>
+  </head>
+  <body class="text-[12px]">
+    <div class="w-[612px] mt-[25px] h-[1008px] mx-auto flex flex-col gap-2">
+      <!-- FIRST PART - LOGO -->
+      <div class="grid grid-cols-2 bg-slate-100">
+        <div class="grid place-items-center border text-[12px] border-stone-400">
+            <h1> Estmates Of Charges </h1>
+            Serbian Movers LLC / #ILCC 233259 <br>
+            2720 South River Road #Suite 100 <br>
+            Des Plaines, IL 60018<br>
+        </div>
+        <div
+          class="flex flex-col gap-1.5 justify-center text-center pb-[20px] border border-stone-400 pl-4"
+        >
+          
+            <strong class="pt-[20px] text-center"> CONTACTS </strong> <br>
+            office@serbianmovers.com<br>
+            www.serbianmovers.com <br>
+            (224) 291 - 8942
+        </div>
+      </div>
+      <!-- SECOND PART - ESTIMATE -->
+      <div>
+        <div class="relative py-1 bg-slate-100 border border-stone-400">
+          <h1 class="text-emerald-700 font-medium text-lg text-center">
+            Moving Estimate
+          </h1>
+          <p class="absolute right-2 top-1/2 -translate-y-1/2">
+            Quote No: <span class="text-rose-500">QN<%=QrandomNum%></span>
+          </p>
+        </div>
+        <div class="grid grid-cols-2 font-medium">
+          <div
+            class="flex flex-col items-start gap-2 justify-center border border-stone-400 px-4 py-2"
+          >
+            <p>Movers:  Serbian Movers LLC </p> 
+            <p>Address: </p> <p> 2720 South River Road #100</p>
+            <p>  Des Plaines, IL 60018</p>
+          </div>
+          <div
+            class="flex flex-col items-start justify-center gap-2 border border-stone-400 px-4 py-2"
+          >
+            <p>Customer: <%=result.first_name%> <%=result.last_name%> </p>
+            <p>Phone:  <%=result.phone_changed%>  </p >
+            <p>Email: <%=result.email_changed%></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- THIRD PART - ADDRESSES -->
+      <div>
+        <div
+          class="grid grid-cols-2 py-1 bg-slate-100 border border-stone-400 font-medium"
+        >
+          <h2 class="text-emerald-700 text-lg text-center">Moving From</h2>
+          <h2 class="text-emerald-700 text-lg text-center">Moving To</h2>
+        </div>
+        <div class="grid grid-cols-2">
+          <div class="flex flex-col gap-4 border border-stone-400 px-4 py-2">
+            <p class="font-medium">Customer Name: <%=result.first_name%> <%=result.last_name%></p>
+            <div class="flex flex-col gap-2">
+              <p><strong>ADDRESS:</strong> <%=result.origin_address%></p>
+              <p><strong>CITY:</strong> <%=result.origin_city%> &nbsp;&nbsp; <strong>STATE: </strong>  <%=result.origin_state%>  <strong>  &nbsp;&nbsp;ZIP: </strong> <%=result.origin_zipcode%></p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-4 border border-stone-400 px-4 py-2">
+            <p class="font-medium">Customer Name: <%=result.first_name%> <%=result.last_name%></p>
+            <div class="flex flex-col gap-2">
+              <p><strong>ADDRESS:</strong> <%=result.destination_address%></p>
+              <p><strong>CITY:</strong> <%=result.destination_city%> &nbsp;&nbsp; <strong>STATE: </strong>  <%=result.destination_state%>  <strong>  &nbsp;&nbsp;ZIP: </strong> <%=result.destination_zipcode%></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORTH PART - DETAILS -->
+      <div>
+        <div
+          class="grid grid-cols-2 py-1 bg-slate-100 border border-stone-400 font-medium"
+        >
+          <h2 class="text-emerald-700 text-lg text-center">
+            Relocation Details
+          </h2>
+          <h2 class="text-emerald-700 text-lg text-center">Relocation Rate</h2>
+        </div>
+        <div class="grid grid-cols-2">
+          <div class="border border-stone-400 p-4">
+            <table class="w-full font-medium">
+              <tr>
+                <td class="border border-slate-500 w-1/2 p-2">Requested date:</td>
+                <td class="border border-slate-500 p-2"><%=result.move_date %></td>
+              </tr>
+              <tr>
+                <td class="border border-slate-500 p-2">Estimate date:</td>
+                <td class="border border-slate-500 p-2"><%=newDate%></td>
+              </tr>
+              <tr>
+                <td class="border border-slate-500 p-2">Move type:</td>
+                <td class="border border-slate-500 p-2">Local</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-500 p-2">Total Estimate:</td>
+                <td class="border border-slate-500 p-2"> <strong>$<%=total_estimate%></strong></td>
+              </tr>
+            </table>
+          </div>
+          <div class="border border-stone-400 p-4 font-medium">
+            <table class="w-full">
+              <tr>
+                <td class="border border-slate-500 w-1/2 p-2">
+                  Labor Time:
+                </td>
+                <td class="border border-slate-500 p-2"><%=result.estimated_hrs%>HRS x 138/hr</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-500 p-2">
+                  Packing Materials:
+                </td>
+                <td class="border border-slate-500 p-2">$<%=result.estimated_packing%></td>
+              </tr>
+              <tr>
+                <td class="border border-slate-500 p-2">Travel Charges:</td>
+                <td class="border border-slate-500 p-2"><%=result.travel_time%>HRS x 138/hr</td>
+              </tr>
+            </table>
+            <p class="mt-4">Moving Hourly Rate: $138/hr</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIFTH PART - UNDERSTANDING -->
+      <div>
+        <div class="py-1 bg-slate-100 border border-stone-400 font-medium">
+          <h2 class="text-emerald-700 text-lg text-center">
+            Relocation Details
+          </h2>
+        </div>
+        <div class="border border-stone-400 px-4 py-2">
+          <p>By choosing our company, you're agreeing to an hourly rate of $138 for 2 movers and a truck. The minimum charge is 2 hours, and charges will be based on how long it takes to load and unload your shipment, as well as how long it takes us to get from our base to your location and back. Charges will be billed in 15-minute increments, so you only pay for the time we're actually working. We'll use Google Maps to find the fastest route, so you don't have to worry about getting charged for time spent stuck in traffic.
+            Packing materials will be charged separately based on the amount and type of materials needed for your move. If you have any questions about the cost of packing materials, just let us know.
+            Please keep in mind that the estimate we provide is not a guarantee, and the final cost may vary based on the actual job hours and any additional services you request. We'll let you know as soon as possible if there are any changes to the estimated cost. If you have any questions or concerns, don't hesitate to reach out to us. We're here to make your move as smooth and stress-free as possible.</p>
+        </div>
+      </div>
+
+      <div class="w-full flex flex-row text-right justify-between ml-[20px] text-[14px] pt-[4px]">
+        <div class="flex flex-col">
+            <img src="estimate_signature.png" class="h-[50px] border-b-[1px] border-black">
+            <div class="text-center"> Movers Signature</div>
+
+        </div>
+        <div class="flex flex-col">
+            <div class="text-right pr-[20px] border-b-[1px] mt-[25px] mr-[40px] border-black">
+                <%=newDate%></div>
+                <div class="text-center"> Date </div>
+          </div>
+        </div>
+
+
+      <div class="w-full text-right text-[14px] pt-[4px]">
+        Audit Trail for Moving Estimate
+      </div>
+      <div class="w-full text-[12px] pt-[8px] italic">
+        Local moving estimate is hashed and secured. Hash Key: <%=hash%>
+      </div>
+
+      <!-- SIXTH PART - ENDING -->
+    </div>
+  </body>
+</html>

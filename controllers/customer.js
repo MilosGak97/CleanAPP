@@ -838,3 +838,52 @@ exports.bolpdf = (req,res,next) => {
         console.log(err);
     });
 }
+
+exports.GETcreateestimate = (req,res,next) => {
+    return res.render('createestimate');
+}
+
+exports.POSTcreateestimate = (req,res,next) => {
+    
+    const move_id = req.body.move_id;
+
+    Move.findByPk(move_id).then(result => {
+        
+    const move_date = moment(result.move_date);
+
+    const min = 3;
+    const max = 20;
+    const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    const newDate = move_date.subtract(randomNum, 'days'); 
+
+    const estimate_date = newDate.format('MMMM Do YYYY');
+
+
+
+    const Qmin = 1000;
+    const Qmax = 9999;
+    const QrandomNum = Math.floor(Math.random() * (Qmax - Qmin + 1)) + Qmin;
+    const estimated_hrs = result.estimated_hrs * 138;
+    const estimated_travel = result.travel_time * 138 ;
+    const est_packing = parseInt(result.estimated_packing);
+    const total_estimate =  estimated_hrs+ estimated_travel;
+    const total_estimate1 = total_estimate + est_packing;
+
+
+    
+
+    const length = 30;
+    const hash = crypto.randomBytes(Math.ceil(length/2)).toString('hex').slice(0, length);
+    
+
+        res.render('estimate',{
+            result:result,
+            newDate:estimate_date,
+            QrandomNum:QrandomNum,
+            total_estimate:total_estimate1,
+            hash:hash
+        })       
+    }).catch();
+ 
+}

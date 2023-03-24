@@ -38,6 +38,11 @@ router.post('/input2', customerController.POSTinput2);
 router.post('/input3', customerController.POSTinput3);
 router.post('/input4', customerController.POSTinput4);
 
+
+
+router.post('/createestimate', customerController.POSTcreateestimate);
+router.use('/createestimate', customerController.GETcreateestimate);
+
  /*
 router.get('/updateprice', customerController.GETupdateprice);
 
